@@ -1,0 +1,2 @@
+defmodule Poloniex do
+end
