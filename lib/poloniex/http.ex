@@ -1,10 +1,20 @@
 defmodule Poloniex.HTTP do
   @base_url "https://poloniex.com"
 
+  def get(path, command) do
+    headers = []
+    case HTTPoison.get(path |> url, headers, params: %{command: command}) do
+      {:ok, %HTTPoison.Response{status_code: 200, body: response_body}} ->
+        handle_ok(response_body)
+      errors ->
+        errors
+    end
+  end
+
   def post(path, command) do
     post_body = create_post_body(command)
 
-    case HTTPoison.post(url(path), post_body, headers(post_body)) do
+    case HTTPoison.post(path |> url, post_body, post_body |> headers) do
       {:ok, %HTTPoison.Response{status_code: 200, body: response_body}} ->
         handle_ok(response_body)
       {:ok, %HTTPoison.Response{status_code: 403, body: response_body}} ->

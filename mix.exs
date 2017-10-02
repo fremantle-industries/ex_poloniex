@@ -20,7 +20,8 @@ defmodule Poloniex.Mixfile do
   defp deps do
     [
       {:httpoison, "~> 0.13"},
-      {:json, "~> 1.0"}
+      {:json, "~> 1.0"},
+      {:exvcr, "~> 0.8", only: :test}
     ]
   end
 end
