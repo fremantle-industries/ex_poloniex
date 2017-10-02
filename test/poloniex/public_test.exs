@@ -24,8 +24,18 @@ defmodule Poloniex.PublicTest do
     end
   end
 
-  test "return24Volume" do
-    assert Poloniex.Public.return24Volume() == {:error, :not_implemented}
+  test "return_24h_volume" do
+    use_cassette "return_24h_volume" do
+      HTTPoison.start
+      {:ok, volume} = Poloniex.Public.return_24h_volume()
+
+      assert volume["BTC_ETH"] == %{"BTC" => "3310.97290886", "ETH" => "48516.34110835"}
+      assert volume["totalBTC"] == "16429.79923551"
+      assert volume["totalETH"] == "5505.89292550"
+      assert volume["totalUSDT"] == "32328513.94307584"
+      assert volume["totalXMR"] == "549.96018989"
+      assert volume["totalXUSD"] == "0.00000000"
+    end
   end
 
   test "returnOrderBook" do

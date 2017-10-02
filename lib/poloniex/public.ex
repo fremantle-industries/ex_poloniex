@@ -8,8 +8,11 @@ defmodule Poloniex.Public do
     end
   end
 
-  def return24Volume do
-    {:error, :not_implemented}
+  def return_24h_volume do
+    case get("return24hVolume") do
+      {:ok, volume} -> {:ok, volume}
+      errors -> errors
+    end
   end
 
   def returnOrderBook do
