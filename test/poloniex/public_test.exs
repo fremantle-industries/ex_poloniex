@@ -5,12 +5,12 @@ defmodule Poloniex.PublicTest do
   doctest Poloniex.Public
 
   setup_all do
+    HTTPoison.start
     ExVCR.Config.cassette_library_dir("test/fixture/vcr_cassettes")
   end
 
   test "return_ticker" do
     use_cassette "return_ticker" do
-      HTTPoison.start
       {:ok, ticker} = Poloniex.Public.return_ticker()
 
       btc_eth = ticker["BTC_ETH"]
@@ -27,7 +27,6 @@ defmodule Poloniex.PublicTest do
 
   test "return_24h_volume" do
     use_cassette "return_24h_volume" do
-      HTTPoison.start
       {:ok, volume} = Poloniex.Public.return_24h_volume()
 
       assert volume["BTC_ETH"] == %{"BTC" => "3310.97290886", "ETH" => "48516.34110835"}
@@ -41,7 +40,6 @@ defmodule Poloniex.PublicTest do
 
   test "return_order_book" do
     use_cassette "return_order_book" do
-      HTTPoison.start
       {:ok, order_book} = Poloniex.Public.return_order_book("BTC_ETH")
 
       assert order_book["asks"] == [
@@ -153,7 +151,6 @@ defmodule Poloniex.PublicTest do
 
   test "return_trade_history" do
     use_cassette "return_trade_history" do
-      HTTPoison.start
       end_time = %DateTime{
         year: 2017, month: 9, day: 13, hour: 0, minute: 0, second: 0,
         time_zone: "Etc/UTC", zone_abbr: "UTC", utc_offset: 0, std_offset: 0
@@ -177,7 +174,6 @@ defmodule Poloniex.PublicTest do
 
   test "return_chart_data" do
     use_cassette "return_chart_data" do
-      HTTPoison.start
       end_time = %DateTime{
         year: 2017, month: 9, day: 13, hour: 0, minute: 0, second: 0,
         time_zone: "Etc/UTC", zone_abbr: "UTC", utc_offset: 0, std_offset: 0
@@ -199,7 +195,6 @@ defmodule Poloniex.PublicTest do
 
   test "return_currencies" do
     use_cassette "return_currencies" do
-      HTTPoison.start
       {:ok, currencies} = Poloniex.Public.return_currencies()
 
       assert currencies["BTC"] == %{
@@ -217,7 +212,6 @@ defmodule Poloniex.PublicTest do
 
   test "return_loan_orders" do
     use_cassette "return_loan_orders" do
-      HTTPoison.start
       {:ok, loan_orders} = Poloniex.Public.return_loan_orders("BTC")
 
       assert loan_orders["offers"] == [

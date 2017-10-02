@@ -1,25 +1,35 @@
 defmodule Poloniex.TradingTest do
   use ExUnit.Case
+  use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
   doctest Poloniex.Trading
 
+  setup_all do
+    HTTPoison.start
+    ExVCR.Config.cassette_library_dir("test/fixture/vcr_cassettes")
+  end
+
   test "returnBalances is a map of available balanaces" do
-    {:ok, balances} = Poloniex.Trading.returnBalances()
-    assert balances["BTC"] == "0.00000000"
-    assert balances["LTC"] == "0.00000000"
+    use_cassette "return_balances" do
+      {:ok, balances} = Poloniex.Trading.returnBalances()
+      assert balances["BTC"] == "0.00000000"
+      assert balances["LTC"] == "0.00000000"
+    end
   end
 
   test "returnCompleteBalances is a map of detailed balances" do
-    {:ok, completeBalances } = Poloniex.Trading.returnCompleteBalances()
-    assert completeBalances["BTC"] == %{
-      "available" => "0.00000000",
-      "onOrders" => "0.00000000",
-      "btcValue" => "0.00000000"
-    }
-    assert completeBalances["LTC"] == %{
-      "available" => "0.00000000",
-      "onOrders" => "0.00000000",
-      "btcValue" => "0.00000000"
-    }
+    use_cassette "return_complete_balances" do
+      {:ok, completeBalances } = Poloniex.Trading.returnCompleteBalances()
+      assert completeBalances["BTC"] == %{
+        "available" => "0.00000000",
+        "onOrders" => "0.00000000",
+        "btcValue" => "0.00000000"
+      }
+      assert completeBalances["LTC"] == %{
+        "available" => "0.00000000",
+        "onOrders" => "0.00000000",
+        "btcValue" => "0.00000000"
+      }
+    end
   end
 
   test "returnDepositAddresses is not implemented" do
