@@ -21,6 +21,7 @@ defmodule Poloniex.Mixfile do
     [
       {:httpoison, "~> 0.13"},
       {:json, "~> 1.0"},
+      {:timex, "~> 3.1"},
       {:exvcr, "~> 0.8", only: :test}
     ]
   end

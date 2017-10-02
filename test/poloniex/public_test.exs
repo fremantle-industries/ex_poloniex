@@ -1,6 +1,7 @@
 defmodule Poloniex.PublicTest do
   use ExUnit.Case
   use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
+  use Timex
   doctest Poloniex.Public
 
   setup_all do
@@ -150,8 +151,28 @@ defmodule Poloniex.PublicTest do
     end
   end
 
-  test "returnTradeHistory" do
-    assert Poloniex.Public.returnTradeHistory() == {:error, :not_implemented}
+  test "return_trade_history" do
+    use_cassette "return_trade_history" do
+      HTTPoison.start
+      end_time = %DateTime{
+        year: 2017, month: 9, day: 13, hour: 0, minute: 0, second: 0,
+        time_zone: "Etc/UTC", zone_abbr: "UTC", utc_offset: 0, std_offset: 0
+      }
+      start_time = Timex.shift(end_time, minutes: -1)
+      {:ok, trade_history} = Poloniex.Public.return_trade_history("BTC_ETH", start_time |> Timex.to_unix, end_time |> Timex.to_unix)
+
+      assert trade_history == [
+        %{"amount" => "0.00723166", "date" => "2017-09-12 23:59:54", "globalTradeID" => 229967282, "rate" => "0.07069798", "total" => "0.00051126", "tradeID" => 34131329, "type" => "sell"},
+        %{"amount" => "0.00723166", "date" => "2017-09-12 23:59:53", "globalTradeID" => 229967281, "rate" => "0.07069798", "total" => "0.00051126", "tradeID" => 34131328, "type" => "sell"},
+        %{"amount" => "0.04276834", "date" => "2017-09-12 23:59:30", "globalTradeID" => 229967231, "rate" => "0.07070000", "total" => "0.00302372", "tradeID" => 34131327, "type" => "sell"},
+        %{"amount" => "0.00723166", "date" => "2017-09-12 23:59:26", "globalTradeID" => 229967197, "rate" => "0.07070000", "total" => "0.00051127", "tradeID" => 34131326, "type" => "sell"},
+        %{"amount" => "0.37160827", "date" => "2017-09-12 23:59:04", "globalTradeID" => 229967135, "rate" => "0.07069798", "total" => "0.02627195", "tradeID" => 34131325, "type" => "sell"},
+        %{"amount" => "9.29112585", "date" => "2017-09-12 23:59:03", "globalTradeID" => 229967128, "rate" => "0.07080000", "total" => "0.65781171", "tradeID" => 34131324, "type" => "sell"},
+        %{"amount" => "0.07481250", "date" => "2017-09-12 23:59:03", "globalTradeID" => 229967127, "rate" => "0.07080000", "total" => "0.00529672", "tradeID" => 34131323, "type" => "sell"},
+        %{"amount" => "18.17192550", "date" => "2017-09-12 23:59:03", "globalTradeID" => 229967126, "rate" => "0.07080000", "total" => "1.28657232", "tradeID" => 34131322, "type" => "sell"},
+        %{"amount" => "0.08819070", "date" => "2017-09-12 23:59:02", "globalTradeID" => 229967124, "rate" => "0.07080000", "total" => "0.00624390", "tradeID" => 34131321, "type" => "sell"}
+      ]
+    end
   end
 
   test "returnChartData" do
