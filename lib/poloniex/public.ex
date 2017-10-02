@@ -36,8 +36,11 @@ defmodule Poloniex.Public do
     end
   end
 
-  def returnCurrencies do
-    {:error, :not_implemented}
+  def return_currencies do
+    case get("returnCurrencies") do
+      {:ok, currencies} -> {:ok, currencies}
+      errors -> errors
+    end
   end
 
   def returnLoanOrders do

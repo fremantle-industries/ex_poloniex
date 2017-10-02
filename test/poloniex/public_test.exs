@@ -197,8 +197,22 @@ defmodule Poloniex.PublicTest do
     end
   end
 
-  test "returnCurrencies" do
-    assert Poloniex.Public.returnCurrencies() == {:error, :not_implemented}
+  test "return_currencies" do
+    use_cassette "return_currencies" do
+      HTTPoison.start
+      {:ok, currencies} = Poloniex.Public.return_currencies()
+
+      assert currencies["BTC"] == %{
+        "delisted" => 0,
+        "depositAddress" => nil,
+        "disabled" => 0,
+        "frozen" => 0,
+        "id" => 28,
+        "minConf" => 1,
+        "name" => "Bitcoin",
+        "txFee" => "0.00010000"
+      }
+    end
   end
 
   test "returnLoanOrders" do
