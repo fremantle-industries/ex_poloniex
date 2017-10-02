@@ -43,8 +43,11 @@ defmodule Poloniex.Public do
     end
   end
 
-  def returnLoanOrders do
-    {:error, :not_implemented}
+  def return_loan_orders(currency) do
+    case get("returnLoanOrders", %{currency: currency}) do
+      {:ok, loan_orders} -> {:ok, loan_orders}
+      errors -> errors
+    end
   end
 
   defp get(command) do

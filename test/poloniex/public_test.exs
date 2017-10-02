@@ -215,7 +215,68 @@ defmodule Poloniex.PublicTest do
     end
   end
 
-  test "returnLoanOrders" do
-    assert Poloniex.Public.returnLoanOrders() == {:error, :not_implemented}
+  test "return_loan_orders" do
+    use_cassette "return_loan_orders" do
+      HTTPoison.start
+      {:ok, loan_orders} = Poloniex.Public.return_loan_orders("BTC")
+
+      assert loan_orders["offers"] == [
+        %{"amount" => "0.06082129", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00009400"},
+        %{"amount" => "0.04624417", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00016900"},
+        %{"amount" => "0.01082583", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00018200"},
+        %{"amount" => "0.79881157", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00018298"},
+        %{"amount" => "0.21753644", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00018300"},
+        %{"amount" => "0.01234734", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00018311"},
+        %{"amount" => "26.98376291", "rangeMax" => 5, "rangeMin" => 2, "rate" => "0.00018400"},
+        %{"amount" => "0.10000000", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00018411"},
+        %{"amount" => "0.14886679", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00018500"},
+        %{"amount" => "0.01017261", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00018535"},
+        %{"amount" => "0.09163315", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00018583"},
+        %{"amount" => "0.01017261", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00018670"},
+        %{"amount" => "0.31616918", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00018700"},
+        %{"amount" => "0.01360315", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00018766"},
+        %{"amount" => "0.07468414", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00018800"},
+        %{"amount" => "0.01017261", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00018805"},
+        %{"amount" => "0.14827176", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00018826"},
+        %{"amount" => "0.01315578", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00018850"},
+        %{"amount" => "0.09163315", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00018866"},
+        %{"amount" => "0.10278310", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00018900"},
+        %{"amount" => "0.01146844", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00018908"},
+        %{"amount" => "0.04376107", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00018926"},
+        %{"amount" => "0.01017261", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00018940"},
+        %{"amount" => "0.05801464", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00018950"},
+        %{"amount" => "5.99924596", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00019000"},
+        %{"amount" => "0.05082075", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00019026"},
+        %{"amount" => "0.29132729", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00019050"},
+        %{"amount" => "0.02488117", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00019075"},
+        %{"amount" => "0.10000000", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00019089"},
+        %{"amount" => "0.34850090", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00019100"},
+        %{"amount" => "0.06384558", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00019110"},
+        %{"amount" => "0.01189183", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00019133"},
+        %{"amount" => "0.09163315", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00019150"},
+        %{"amount" => "0.03050000", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00019191"},
+        %{"amount" => "4.86990098", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00019200"},
+        %{"amount" => "0.01017261", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00019210"},
+        %{"amount" => "0.13571300", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00019221"},
+        %{"amount" => "0.20836338", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00019226"},
+        %{"amount" => "0.03352386", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00019250"},
+        %{"amount" => "0.03160021", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00019271"},
+        %{"amount" => "0.00078130", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00019299"},
+        %{"amount" => "0.86627333", "rangeMax" => 7, "rangeMin" => 2, "rate" => "0.00019300"},
+        %{"amount" => "0.01017261", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00019345"},
+        %{"amount" => "0.06384558", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00019363"},
+        %{"amount" => "0.53101233", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00019380"},
+        %{"amount" => "0.01135270", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00019400"},
+        %{"amount" => "0.01470856", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00019425"},
+        %{"amount" => "0.09163315", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00019433"},
+        %{"amount" => "0.01017261", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00019480"},
+        %{"amount" => "4.52832466", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00019500"}
+      ]
+      assert loan_orders["demands"] == [
+        %{"amount" => "0.02640978", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00006010"},
+        %{"amount" => "0.72449126", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00001000"},
+        %{"amount" => "0.90950000", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00000300"}
+      ]
+    end
   end
 end
