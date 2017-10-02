@@ -175,8 +175,26 @@ defmodule Poloniex.PublicTest do
     end
   end
 
-  test "returnChartData" do
-    assert Poloniex.Public.returnChartData() == {:error, :not_implemented}
+  test "return_chart_data" do
+    use_cassette "return_chart_data" do
+      HTTPoison.start
+      end_time = %DateTime{
+        year: 2017, month: 9, day: 13, hour: 0, minute: 0, second: 0,
+        time_zone: "Etc/UTC", zone_abbr: "UTC", utc_offset: 0, std_offset: 0
+      }
+      start_time = Timex.shift(end_time, minutes: -1)
+      period = 60 * 5
+      {:ok, chart_data} = Poloniex.Public.return_chart_data(
+        "BTC_ETH",
+        start_time |> Timex.to_unix,
+        end_time |> Timex.to_unix,
+        period
+      )
+
+      assert chart_data == [
+        %{"date" => 1505260800, "close" => 0.07046265000000002, "high" => 0.07069999, "low" => 0.07046023000000001, "open" => 0.07069999, "quoteVolume" => 415.12451229, "volume" => 29.26998702, "weightedAverage" => 0.07050893}
+      ]
+    end
   end
 
   test "returnCurrencies" do

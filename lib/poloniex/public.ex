@@ -29,8 +29,11 @@ defmodule Poloniex.Public do
     end
   end
 
-  def returnChartData do
-    {:error, :not_implemented}
+  def return_chart_data(symbol, start_time, end_time, period) do
+    case get("returnChartData", %{currencyPair: symbol, start: start_time, end: end_time, period: period}) do
+      {:ok, chart_data} -> {:ok, chart_data}
+      errors -> errors
+    end
   end
 
   def returnCurrencies do

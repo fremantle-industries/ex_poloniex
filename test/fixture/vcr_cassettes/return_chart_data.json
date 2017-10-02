@@ -1,0 +1,28 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": [],
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://poloniex.com/public?command=returnChartData&currencyPair=BTC_ETH&end=1505260800&period=300&start=1505260740"
+    },
+    "response": {
+      "body": "[{\"date\":1505260800,\"high\":0.07069999,\"low\":0.07046023,\"open\":0.07069999,\"close\":0.07046265,\"volume\":29.26998702,\"quoteVolume\":415.12451229,\"weightedAverage\":0.07050893}]",
+      "headers": {
+        "Date": "Mon, 02 Oct 2017 21:12:50 GMT",
+        "Content-Type": "application/json",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=d6ca4cca0b1d85ba09dbdf96834422eac1506978770; expires=Tue, 02-Oct-18 21:12:50 GMT; path=/; domain=.poloniex.com; HttpOnly",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET",
+        "Server": "cloudflare-nginx",
+        "CF-RAY": "3a7aa9827d8629fb-SEA"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]
