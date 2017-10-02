@@ -15,8 +15,11 @@ defmodule Poloniex.Public do
     end
   end
 
-  def returnOrderBook do
-    {:error, :not_implemented}
+  def return_order_book(symbol) do
+    case get("returnOrderBook", %{currencyPair: symbol}) do
+      {:ok, order_book} -> {:ok, order_book}
+      errors -> errors
+    end
   end
 
   def returnTradeHistory do
@@ -36,6 +39,10 @@ defmodule Poloniex.Public do
   end
 
   defp get(command) do
-    @adapter.get("public", command)
+    get(command, %{})
+  end
+
+  defp get(command, params) do
+    @adapter.get("public", command, params)
   end
 end

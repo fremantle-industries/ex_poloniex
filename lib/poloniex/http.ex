@@ -1,9 +1,11 @@
 defmodule Poloniex.HTTP do
   @base_url "https://poloniex.com"
 
-  def get(path, command) do
+  def get(path, command, params) do
     headers = []
-    case HTTPoison.get(path |> url, headers, params: %{command: command}) do
+    merged_params = Map.merge(%{command: command}, params)
+
+    case HTTPoison.get(path |> url, headers, params: merged_params) do
       {:ok, %HTTPoison.Response{status_code: 200, body: response_body}} ->
         handle_ok(response_body)
       errors ->
@@ -26,6 +28,8 @@ defmodule Poloniex.HTTP do
 
   defp handle_ok(response_body) do
     case response_body |> JSON.decode do
+      {:ok, %{"error" => message}} ->
+        {:error, message}
       {:ok, body} ->
         {:ok, body}
       errors ->
