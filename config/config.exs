@@ -22,7 +22,6 @@ use Mix.Config
 #
 config :poloniex, api_key: System.get_env("API_KEY")
 config :poloniex, secret: System.get_env("SECRET")
-config :poloniex, adapter: Poloniex.HTTP
 
 # It is also possible to import configuration files, relative to this
 # directory. For example, you can emulate configuration per environment

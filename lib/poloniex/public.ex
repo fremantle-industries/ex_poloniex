@@ -1,5 +1,5 @@
 defmodule Poloniex.Public do
-  @adapter Application.get_env(:poloniex, :adapter)
+  @adapter Poloniex.HTTP
 
   def return_ticker do
     case get("returnTicker") do

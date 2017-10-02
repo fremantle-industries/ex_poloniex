@@ -1,5 +1,5 @@
 defmodule Poloniex.Trading do
-  @adapter Application.get_env(:poloniex, :adapter)
+  @adapter Poloniex.HTTP
 
   def returnBalances do
     case post("returnBalances") do
