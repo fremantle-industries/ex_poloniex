@@ -1,7 +1,13 @@
 defmodule Poloniex.Trading do
+  @moduledoc """
+  Module for Poloniex Trading API methods
+
+  https://poloniex.com/support/api/
+  """
+
   @adapter Poloniex.HTTP
 
-  def returnBalances do
+  def return_balances do
     case post("returnBalances") do
       {:ok, balances} -> {:ok, balances}
       errors -> errors

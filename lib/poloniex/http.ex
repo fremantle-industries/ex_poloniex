@@ -1,4 +1,11 @@
 defmodule Poloniex.HTTP do
+  @moduledoc """
+  HTTP client to manage requests to Poloniex API methods
+
+  - nonce uses :os.system_time
+  - signed body uses sha512 from erlang crypto
+  """
+
   @base_url "https://poloniex.com"
 
   def get(path, command, params) do
@@ -60,6 +67,7 @@ defmodule Poloniex.HTTP do
   end
 
   defp sign(text) do
+    # credo:disable-for-next-line Credo.Check.Refactor.PipeChainStart
     :crypto.hmac(:sha512, secret(), text) |> Base.encode16
   end
 
@@ -67,15 +75,15 @@ defmodule Poloniex.HTTP do
     Application.get_env(:poloniex, :api_key)
   end
 
-  defp secret() do
+  defp secret do
     Application.get_env(:poloniex, :secret)
   end
 
   defp sign_post_headers(body) do
     [
       {"Content-Type", "application/x-www-form-urlencoded"},
-      {"Key", key() },
-      { "Sign", sign(body) }
+      {"Key", key()},
+      {"Sign", sign(body)}
     ]
   end
 end
