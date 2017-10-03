@@ -22,27 +22,27 @@ defmodule Poloniex.Trading do
     end
   end
 
-  def returnDepositAddresses do
+  def return_deposit_addresses do
     {:error, :not_implemented}
   end
 
-  def generateNewAddress do
+  def generate_new_address do
     {:error, :not_implemented}
   end
 
-  def returnDepositsWithdrawals do
+  def return_deposits_withdrawals do
     {:error, :not_implemented}
   end
 
-  def returnOpenOrders do
+  def return_open_orders do
     {:error, :not_implemented}
   end
 
-  def returnTradeHistory do
+  def return_trade_history do
     {:error, :not_implemented}
   end
 
-  def returnOrderTrades do
+  def return_order_trades do
     {:error, :not_implemented}
   end
 
@@ -54,11 +54,11 @@ defmodule Poloniex.Trading do
     {:error, :not_implemented}
   end
 
-  def cancelOrder do
+  def cancel_order do
     {:error, :not_implemented}
   end
 
-  def moveOrder do
+  def move_order do
     {:error, :not_implemented}
   end
 
@@ -66,63 +66,63 @@ defmodule Poloniex.Trading do
     {:error, :not_implemented}
   end
 
-  def returnFeeInfo do
+  def return_fee_info do
     {:error, :not_implemented}
   end
 
-  def returnAvailableAccountBalances do
+  def return_available_account_balances do
     {:error, :not_implemented}
   end
 
-  def returnTradableBalances do
+  def return_tradable_balances do
     {:error, :not_implemented}
   end
 
-  def transferBalance do
+  def transfer_balance do
     {:error, :not_implemented}
   end
 
-  def returnMarginAccountSummary do
+  def return_margin_account_summary do
     {:error, :not_implemented}
   end
 
-  def marginBuy do
+  def margin_buy do
     {:error, :not_implemented}
   end
 
-  def marginSell do
+  def margin_sell do
     {:error, :not_implemented}
   end
 
-  def getMarginPosition do
+  def get_margin_position do
     {:error, :not_implemented}
   end
 
-  def closeMarginPosition do
+  def close_margin_position do
     {:error, :not_implemented}
   end
 
-  def createLoanOffer do
+  def create_loan_offer do
     {:error, :not_implemented}
   end
 
-  def cancelLoanOffer do
+  def cancel_loan_offer do
     {:error, :not_implemented}
   end
 
-  def returnOpenLoanOffers do
+  def return_open_loan_offers do
     {:error, :not_implemented}
   end
 
-  def returnActiveLoans do
+  def return_active_loans do
     {:error, :not_implemented}
   end
 
-  def returnLendingHistory do
+  def return_lending_history do
     {:error, :not_implemented}
   end
 
-  def toggleAutoRenew do
+  def toggle_auto_renew do
     {:error, :not_implemented}
   end
 

@@ -8,9 +8,9 @@ defmodule Poloniex.TradingTest do
     ExVCR.Config.cassette_library_dir("test/fixture/vcr_cassettes")
   end
 
-  test "returnBalances is a map of available balanaces" do
+  test "return_balances is a map of available balanaces" do
     use_cassette "return_balances" do
-      {:ok, balances} = Poloniex.Trading.returnBalances()
+      {:ok, balances} = Poloniex.Trading.return_balances()
       assert balances["BTC"] == "0.00000000"
       assert balances["ETH"] == "0.00000000"
     end
@@ -43,28 +43,28 @@ defmodule Poloniex.TradingTest do
     end
   end
 
-  test "returnDepositAddresses is not implemented" do
-    assert Poloniex.Trading.returnDepositAddresses() == {:error, :not_implemented}
+  test "return_deposit_addresses is not implemented" do
+    assert Poloniex.Trading.return_deposit_addresses() == {:error, :not_implemented}
   end
 
-  test "generateNewAddress is not implemented" do
-    assert Poloniex.Trading.generateNewAddress() == {:error, :not_implemented}
+  test "generate_new_address is not implemented" do
+    assert Poloniex.Trading.generate_new_address() == {:error, :not_implemented}
   end
 
-  test "returnDepositsWithdrawals is not implemented" do
-    assert Poloniex.Trading.returnDepositsWithdrawals() == {:error, :not_implemented}
+  test "return_deposits_withdrawals is not implemented" do
+    assert Poloniex.Trading.return_deposits_withdrawals() == {:error, :not_implemented}
   end
 
-  test "returnOpenOrders is not implemented" do
-    assert Poloniex.Trading.returnOpenOrders() == {:error, :not_implemented}
+  test "return_open_orders is not implemented" do
+    assert Poloniex.Trading.return_open_orders() == {:error, :not_implemented}
   end
 
-  test "returnTradeHistory is not implemented" do
-    assert Poloniex.Trading.returnTradeHistory() == {:error, :not_implemented}
+  test "return_trade_history is not implemented" do
+    assert Poloniex.Trading.return_trade_history() == {:error, :not_implemented}
   end
 
-  test "returnOrderTrades is not implemented" do
-    assert Poloniex.Trading.returnOrderTrades() == {:error, :not_implemented}
+  test "return_order_trades is not implemented" do
+    assert Poloniex.Trading.return_order_trades() == {:error, :not_implemented}
   end
 
   test "buy is not implemented" do
@@ -75,75 +75,75 @@ defmodule Poloniex.TradingTest do
     assert Poloniex.Trading.sell() == {:error, :not_implemented}
   end
 
-  test "cancelOrder is not implemented" do
-    assert Poloniex.Trading.cancelOrder() == {:error, :not_implemented}
+  test "cancel_order is not implemented" do
+    assert Poloniex.Trading.cancel_order() == {:error, :not_implemented}
   end
 
-  test "moveOrder is not implemented" do
-    assert Poloniex.Trading.moveOrder() == {:error, :not_implemented}
+  test "move_order is not implemented" do
+    assert Poloniex.Trading.move_order() == {:error, :not_implemented}
   end
 
   test "withdraw is not implemented" do
     assert Poloniex.Trading.withdraw() == {:error, :not_implemented}
   end
 
-  test "returnFeeInfo is not implemented" do
-    assert Poloniex.Trading.returnFeeInfo() == {:error, :not_implemented}
+  test "return_fee_info is not implemented" do
+    assert Poloniex.Trading.return_fee_info() == {:error, :not_implemented}
   end
 
-  test "returnAvailableAccountBalances is not implemented" do
-    assert Poloniex.Trading.returnAvailableAccountBalances() == {:error, :not_implemented}
+  test "return_available_account_balances is not implemented" do
+    assert Poloniex.Trading.return_available_account_balances() == {:error, :not_implemented}
   end
 
-  test "returnTradableBalances is not implemented" do
-    assert Poloniex.Trading.returnTradableBalances() == {:error, :not_implemented}
+  test "return_tradable_balances is not implemented" do
+    assert Poloniex.Trading.return_tradable_balances() == {:error, :not_implemented}
   end
 
-  test "transferBalance is not implemented" do
-    assert Poloniex.Trading.transferBalance() == {:error, :not_implemented}
+  test "transfer_balance is not implemented" do
+    assert Poloniex.Trading.transfer_balance() == {:error, :not_implemented}
   end
 
-  test "returnMarginAccountSummary is not implemented" do
-    assert Poloniex.Trading.returnMarginAccountSummary() == {:error, :not_implemented}
+  test "return_margin_account_summary is not implemented" do
+    assert Poloniex.Trading.return_margin_account_summary() == {:error, :not_implemented}
   end
 
-  test "marginBuy is not implemented" do
-    assert Poloniex.Trading.marginBuy() == {:error, :not_implemented}
+  test "margin_buy is not implemented" do
+    assert Poloniex.Trading.margin_buy() == {:error, :not_implemented}
   end
 
-  test "marginSell is not implemented" do
-    assert Poloniex.Trading.marginSell() == {:error, :not_implemented}
+  test "margin_sell is not implemented" do
+    assert Poloniex.Trading.margin_sell() == {:error, :not_implemented}
   end
 
-  test "getMarginPosition is not implemented" do
-    assert Poloniex.Trading.getMarginPosition() == {:error, :not_implemented}
+  test "get_margin_position is not implemented" do
+    assert Poloniex.Trading.get_margin_position() == {:error, :not_implemented}
   end
 
-  test "closeMarginPosition is not implemented" do
-    assert Poloniex.Trading.closeMarginPosition() == {:error, :not_implemented}
+  test "close_margin_position is not implemented" do
+    assert Poloniex.Trading.close_margin_position() == {:error, :not_implemented}
   end
 
-  test "createLoanOffer is not implemented" do
-    assert Poloniex.Trading.createLoanOffer() == {:error, :not_implemented}
+  test "create_loan_offer is not implemented" do
+    assert Poloniex.Trading.create_loan_offer() == {:error, :not_implemented}
   end
 
-  test "cancelLoanOffer is not implemented" do
-    assert Poloniex.Trading.cancelLoanOffer() == {:error, :not_implemented}
+  test "cancel_loan_offer is not implemented" do
+    assert Poloniex.Trading.cancel_loan_offer() == {:error, :not_implemented}
   end
 
-  test "returnOpenLoanOffers is not implemented" do
-    assert Poloniex.Trading.returnOpenLoanOffers() == {:error, :not_implemented}
+  test "return_open_loan_offers is not implemented" do
+    assert Poloniex.Trading.return_open_loan_offers() == {:error, :not_implemented}
   end
 
-  test "returnActiveLoans is not implemented" do
-    assert Poloniex.Trading.returnActiveLoans() == {:error, :not_implemented}
+  test "return_active_loans is not implemented" do
+    assert Poloniex.Trading.return_active_loans() == {:error, :not_implemented}
   end
 
-  test "returnLendingHistory is not implemented" do
-    assert Poloniex.Trading.returnLendingHistory() == {:error, :not_implemented}
+  test "return_lending_history is not implemented" do
+    assert Poloniex.Trading.return_lending_history() == {:error, :not_implemented}
   end
 
-  test "toggleAutoRenew is not implemented" do
-    assert Poloniex.Trading.toggleAutoRenew() == {:error, :not_implemented}
+  test "toggle_auto_renew is not implemented" do
+    assert Poloniex.Trading.toggle_auto_renew() == {:error, :not_implemented}
   end
 end
