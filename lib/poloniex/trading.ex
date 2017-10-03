@@ -8,8 +8,15 @@ defmodule Poloniex.Trading do
     end
   end
 
-  def returnCompleteBalances do
+  def return_complete_balances do
     case post("returnCompleteBalances") do
+      {:ok, completeBalances} -> {:ok, completeBalances}
+      errors -> errors
+    end
+  end
+
+  def return_complete_balances(:all) do
+    case post("returnCompleteBalances", account: :all) do
       {:ok, completeBalances} -> {:ok, completeBalances}
       errors -> errors
     end
@@ -119,7 +126,11 @@ defmodule Poloniex.Trading do
     {:error, :not_implemented}
   end
 
+  defp post(command, params) do
+    @adapter.post("tradingApi", command, params)
+  end
+
   defp post(command) do
-    @adapter.post("tradingApi", command)
+    post(command, %{})
   end
 end

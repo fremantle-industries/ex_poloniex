@@ -16,7 +16,7 @@ defmodule Poloniex.HTTPTest do
       Application.put_env(:poloniex, :api_key, "api_key")
       Application.put_env(:poloniex, :secret, "secret")
 
-      assert Poloniex.HTTP.post("tradingApi", "returnBalances") == {
+      assert Poloniex.HTTP.post("tradingApi", "returnBalances", %{}) == {
         :error,
         %Poloniex.AuthenticationError{message: "Invalid API key/secret pair."}
       }

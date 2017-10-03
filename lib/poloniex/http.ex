@@ -13,10 +13,15 @@ defmodule Poloniex.HTTP do
     end
   end
 
-  def post(path, command) do
-    post_body = create_post_body(command)
+  def post(path, command, params) do
+    param_pairs = Enum.map params, fn {key, value} ->
+      "#{key}=#{value}"
+    end
+    post_body = ["nonce=#{nonce()}", "command=#{command}" | param_pairs]
+                |> Enum.join("&")
+    headers = post_body |> sign_post_headers
 
-    case HTTPoison.post(path |> url, post_body, post_body |> headers) do
+    case HTTPoison.post(path |> url, post_body, headers) do
       {:ok, %HTTPoison.Response{status_code: 200, body: response_body}} ->
         handle_ok(response_body)
       {:ok, %HTTPoison.Response{status_code: 403, body: response_body}} ->
@@ -66,11 +71,7 @@ defmodule Poloniex.HTTP do
     Application.get_env(:poloniex, :secret)
   end
 
-  defp create_post_body(command) do
-    "nonce=#{nonce()}&command=#{command}"
-  end
-
-  defp headers(body) do
+  defp sign_post_headers(body) do
     [
       {"Content-Type", "application/x-www-form-urlencoded"},
       {"Key", key() },

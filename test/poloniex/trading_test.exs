@@ -12,22 +12,33 @@ defmodule Poloniex.TradingTest do
     use_cassette "return_balances" do
       {:ok, balances} = Poloniex.Trading.returnBalances()
       assert balances["BTC"] == "0.00000000"
-      assert balances["LTC"] == "0.00000000"
+      assert balances["ETH"] == "0.00000000"
     end
   end
 
-  test "returnCompleteBalances is a map of detailed balances" do
+  test "return_complete_balances is a map of detailed balances for the exchange account" do
     use_cassette "return_complete_balances" do
-      {:ok, completeBalances } = Poloniex.Trading.returnCompleteBalances()
-      assert completeBalances["BTC"] == %{
+      {:ok, complete_balances } = Poloniex.Trading.return_complete_balances()
+      assert complete_balances["BTC"] == %{
         "available" => "0.00000000",
         "onOrders" => "0.00000000",
         "btcValue" => "0.00000000"
       }
-      assert completeBalances["LTC"] == %{
+      assert complete_balances["ETH"] == %{
         "available" => "0.00000000",
         "onOrders" => "0.00000000",
         "btcValue" => "0.00000000"
+      }
+    end
+  end
+
+  test "return_complete_balances can include balances from the margin and lending accounts" do
+    use_cassette "return_complete_balances_all" do
+      {:ok, complete_balances } = Poloniex.Trading.return_complete_balances(:all)
+      assert complete_balances["BTC"] == %{
+        "available" => "0.00000002",
+        "onOrders" => "0.00000001",
+        "btcValue" => "0.00000003"
       }
     end
   end
