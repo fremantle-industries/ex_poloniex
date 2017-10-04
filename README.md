@@ -1,4 +1,5 @@
 # Poloniex
+[![Build Status](https://circleci.com/gh/fremantle-capital/poloniex_elixir.png?circle-token=e925c779d62292b6fd4f5f15445c4cec8d7ca79a)](https://circleci.com/gh/fremantle-capital/poloniex_elixir)
 
 **TODO: Add description**
 
