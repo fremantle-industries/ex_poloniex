@@ -19,7 +19,7 @@ defmodule ExPoloniex.Mixfile do
 
   defp deps do
     [
-      {:httpoison, "~> 0.13"},
+      {:httpoison, "~> 0.12"},
       {:json, "~> 1.0"},
       {:timex, "~> 3.1"},
       {:exvcr, "~> 0.8", only: :test},
