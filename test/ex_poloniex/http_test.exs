@@ -1,7 +1,7 @@
-defmodule Poloniex.HTTPTest do
+defmodule ExPoloniex.HTTPTest do
   use ExUnit.Case
   use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
-  doctest Poloniex.HTTP
+  doctest ExPoloniex.HTTP
 
   @api_key Application.get_env(:poloniex, :api_key)
   @secret Application.get_env(:poloniex, :secret)
@@ -16,9 +16,9 @@ defmodule Poloniex.HTTPTest do
       Application.put_env(:poloniex, :api_key, "api_key")
       Application.put_env(:poloniex, :secret, "secret")
 
-      assert Poloniex.HTTP.post("tradingApi", "returnBalances", %{}) == {
+      assert ExPoloniex.HTTP.post("tradingApi", "returnBalances", %{}) == {
         :error,
-        %Poloniex.AuthenticationError{message: "Invalid API key/secret pair."}
+        %ExPoloniex.AuthenticationError{message: "Invalid API key/secret pair."}
       }
 
       Application.put_env(:poloniex, :api_key, @api_key)

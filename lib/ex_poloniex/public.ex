@@ -1,11 +1,11 @@
-defmodule Poloniex.Public do
+defmodule ExPoloniex.Public do
   @moduledoc """
   Module for Poloniex Public API methods
 
   https://poloniex.com/support/api/
   """
 
-  @adapter Poloniex.HTTP
+  @adapter ExPoloniex.HTTP
 
   def return_ticker do
     case get("returnTicker") do

@@ -1,8 +1,8 @@
-defmodule Poloniex.PublicTest do
+defmodule ExPoloniex.PublicTest do
   use ExUnit.Case
   use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
   use Timex
-  doctest Poloniex.Public
+  doctest ExPoloniex.Public
 
   setup_all do
     HTTPoison.start
@@ -11,7 +11,7 @@ defmodule Poloniex.PublicTest do
 
   test "return_ticker" do
     use_cassette "return_ticker" do
-      {:ok, ticker} = Poloniex.Public.return_ticker()
+      {:ok, ticker} = ExPoloniex.Public.return_ticker()
 
       btc_eth = ticker["BTC_ETH"]
       assert btc_eth["baseVolume"] == "2614.12332326"
@@ -27,7 +27,7 @@ defmodule Poloniex.PublicTest do
 
   test "return_24h_volume" do
     use_cassette "return_24h_volume" do
-      {:ok, volume} = Poloniex.Public.return_24h_volume()
+      {:ok, volume} = ExPoloniex.Public.return_24h_volume()
 
       assert volume["BTC_ETH"] == %{"BTC" => "3310.97290886", "ETH" => "48516.34110835"}
       assert volume["totalBTC"] == "16429.79923551"
@@ -40,7 +40,7 @@ defmodule Poloniex.PublicTest do
 
   test "return_order_book" do
     use_cassette "return_order_book" do
-      {:ok, order_book} = Poloniex.Public.return_order_book("BTC_ETH")
+      {:ok, order_book} = ExPoloniex.Public.return_order_book("BTC_ETH")
 
       assert order_book["asks"] == [
         ["0.06716000", 1.03],
@@ -156,7 +156,7 @@ defmodule Poloniex.PublicTest do
         time_zone: "Etc/UTC", zone_abbr: "UTC", utc_offset: 0, std_offset: 0
       }
       start_time = Timex.shift(end_time, minutes: -1)
-      {:ok, trade_history} = Poloniex.Public.return_trade_history("BTC_ETH", start_time |> Timex.to_unix, end_time |> Timex.to_unix)
+      {:ok, trade_history} = ExPoloniex.Public.return_trade_history("BTC_ETH", start_time |> Timex.to_unix, end_time |> Timex.to_unix)
 
       assert trade_history == [
         %{"amount" => "0.00723166", "date" => "2017-09-12 23:59:54", "globalTradeID" => 229967282, "rate" => "0.07069798", "total" => "0.00051126", "tradeID" => 34131329, "type" => "sell"},
@@ -180,7 +180,7 @@ defmodule Poloniex.PublicTest do
       }
       start_time = Timex.shift(end_time, minutes: -1)
       period = 60 * 5
-      {:ok, chart_data} = Poloniex.Public.return_chart_data(
+      {:ok, chart_data} = ExPoloniex.Public.return_chart_data(
         "BTC_ETH",
         start_time |> Timex.to_unix,
         end_time |> Timex.to_unix,
@@ -195,7 +195,7 @@ defmodule Poloniex.PublicTest do
 
   test "return_currencies" do
     use_cassette "return_currencies" do
-      {:ok, currencies} = Poloniex.Public.return_currencies()
+      {:ok, currencies} = ExPoloniex.Public.return_currencies()
 
       assert currencies["BTC"] == %{
         "delisted" => 0,
@@ -212,7 +212,7 @@ defmodule Poloniex.PublicTest do
 
   test "return_loan_orders" do
     use_cassette "return_loan_orders" do
-      {:ok, loan_orders} = Poloniex.Public.return_loan_orders("BTC")
+      {:ok, loan_orders} = ExPoloniex.Public.return_loan_orders("BTC")
 
       assert loan_orders["offers"] == [
         %{"amount" => "0.06082129", "rangeMax" => 2, "rangeMin" => 2, "rate" => "0.00009400"},

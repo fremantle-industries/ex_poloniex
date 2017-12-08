@@ -10,7 +10,7 @@ use Mix.Config
 
 # You can configure your application as:
 #
-#     config :poloniex_elixir, key: :value
+#     config :ex_poloniex, key: :value
 #
 # and access this configuration in your application as:
 #
@@ -20,8 +20,8 @@ use Mix.Config
 #
 #     config :logger, level: :info
 #
-config :poloniex, api_key: System.get_env("API_KEY")
-config :poloniex, secret: System.get_env("SECRET")
+config :ex_poloniex, api_key: System.get_env("API_KEY")
+config :ex_poloniex, secret: System.get_env("SECRET")
 
 # It is also possible to import configuration files, relative to this
 # directory. For example, you can emulate configuration per environment

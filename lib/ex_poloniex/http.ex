@@ -1,4 +1,4 @@
-defmodule Poloniex.HTTP do
+defmodule ExPoloniex.HTTP do
   @moduledoc """
   HTTP client to manage requests to Poloniex API methods
 
@@ -52,7 +52,7 @@ defmodule Poloniex.HTTP do
   defp handle_forbidden(response_body) do
     case response_body |> JSON.decode do
       {:ok, %{"error" => message}} ->
-        {:error, %Poloniex.AuthenticationError{message: message}}
+        {:error, %ExPoloniex.AuthenticationError{message: message}}
       errors ->
         errors
     end
@@ -67,16 +67,17 @@ defmodule Poloniex.HTTP do
   end
 
   defp sign(text) do
-    # credo:disable-for-next-line Credo.Check.Refactor.PipeChainStart
-    :crypto.hmac(:sha512, secret(), text) |> Base.encode16
+    :sha512
+    |> :crypto.hmac(secret(), text)
+    |> Base.encode16
   end
 
   defp key do
-    Application.get_env(:poloniex, :api_key)
+    Application.get_env(:ex_poloniex, :api_key)
   end
 
   defp secret do
-    Application.get_env(:poloniex, :secret)
+    Application.get_env(:ex_poloniex, :secret)
   end
 
   defp sign_post_headers(body) do

@@ -1,5 +1,5 @@
-# Poloniex
-[![Build Status](https://circleci.com/gh/fremantle-capital/poloniex_elixir.png?circle-token=e925c779d62292b6fd4f5f15445c4cec8d7ca79a)](https://circleci.com/gh/fremantle-capital/poloniex_elixir)
+# ExPoloniex
+[![Build Status](https://circleci.com/gh/fremantle-capital/ex_poloniex.png?circle-token=e925c779d62292b6fd4f5f15445c4cec8d7ca79a)](https://circleci.com/gh/fremantle-capital/poloniex_elixir)
 
 Elixir library for the Poloniex Public & Trade API
 
@@ -11,7 +11,7 @@ by adding `poloniex_elixir` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:poloniex_elixir, "~> 0.1.0"}
+    {:ex_poloniex, "~> 0.1.0"}
   ]
 end
 ```

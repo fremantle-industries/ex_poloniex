@@ -1,11 +1,11 @@
-defmodule Poloniex.Trading do
+defmodule ExPoloniex.Trading do
   @moduledoc """
   Module for Poloniex Trading API methods
 
   https://poloniex.com/support/api/
   """
 
-  @adapter Poloniex.HTTP
+  @adapter ExPoloniex.HTTP
 
   def return_balances do
     case post("returnBalances") do
