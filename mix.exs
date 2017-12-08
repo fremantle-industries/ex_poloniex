@@ -23,7 +23,8 @@ defmodule ExPoloniex.Mixfile do
       {:json, "~> 1.0"},
       {:timex, "~> 3.1"},
       {:exvcr, "~> 0.8", only: :test},
-      {:credo, "~> 0.8", only: [:dev, :test], runtime: false}
+      {:credo, "~> 0.8", only: [:dev, :test], runtime: false},
+      {:mix_test_watch, "~> 0.5", only: :dev, runtime: false}
     ]
   end
 end
