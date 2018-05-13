@@ -4,7 +4,7 @@ defmodule ExPoloniex.TradingTest do
   doctest ExPoloniex.Trading
 
   setup_all do
-    HTTPoison.start
+    HTTPoison.start()
     ExVCR.Config.cassette_library_dir("test/fixture/vcr_cassettes")
   end
 
@@ -18,28 +18,31 @@ defmodule ExPoloniex.TradingTest do
 
   test "return_complete_balances is a map of detailed balances for the exchange account" do
     use_cassette "return_complete_balances" do
-      {:ok, complete_balances } = ExPoloniex.Trading.return_complete_balances()
+      {:ok, complete_balances} = ExPoloniex.Trading.return_complete_balances()
+
       assert complete_balances["BTC"] == %{
-        "available" => "0.00000000",
-        "onOrders" => "0.00000000",
-        "btcValue" => "0.00000000"
-      }
+               "available" => "0.00000000",
+               "onOrders" => "0.00000000",
+               "btcValue" => "0.00000000"
+             }
+
       assert complete_balances["ETH"] == %{
-        "available" => "0.00000000",
-        "onOrders" => "0.00000000",
-        "btcValue" => "0.00000000"
-      }
+               "available" => "0.00000000",
+               "onOrders" => "0.00000000",
+               "btcValue" => "0.00000000"
+             }
     end
   end
 
   test "return_complete_balances can include balances from the margin and lending accounts" do
     use_cassette "return_complete_balances_all" do
-      {:ok, complete_balances } = ExPoloniex.Trading.return_complete_balances(:all)
+      {:ok, complete_balances} = ExPoloniex.Trading.return_complete_balances(:all)
+
       assert complete_balances["BTC"] == %{
-        "available" => "0.00000002",
-        "onOrders" => "0.00000001",
-        "btcValue" => "0.00000003"
-      }
+               "available" => "0.00000002",
+               "onOrders" => "0.00000001",
+               "btcValue" => "0.00000003"
+             }
     end
   end
 

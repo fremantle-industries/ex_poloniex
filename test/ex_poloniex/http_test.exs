@@ -7,7 +7,7 @@ defmodule ExPoloniex.HTTPTest do
   @secret Application.get_env(:poloniex, :secret)
 
   setup_all do
-    HTTPoison.start
+    HTTPoison.start()
     ExVCR.Config.cassette_library_dir("test/fixture/vcr_cassettes")
   end
 
@@ -17,9 +17,9 @@ defmodule ExPoloniex.HTTPTest do
       Application.put_env(:poloniex, :secret, "secret")
 
       assert ExPoloniex.HTTP.post("tradingApi", "returnBalances", %{}) == {
-        :error,
-        %ExPoloniex.AuthenticationError{message: "Invalid API key/secret pair."}
-      }
+               :error,
+               %ExPoloniex.AuthenticationError{message: "Invalid API key/secret pair."}
+             }
 
       Application.put_env(:poloniex, :api_key, @api_key)
       Application.put_env(:poloniex, :secret, @secret)
