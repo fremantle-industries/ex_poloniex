@@ -19,10 +19,9 @@ defmodule ExPoloniex.Mixfile do
 
   defp deps do
     [
-      {:httpoison, "~> 0.12"},
-      {:json, "~> 1.0"},
+      {:httpoison, "~> 1.1"},
       {:timex, "~> 3.1"},
-      {:exvcr, "~> 0.8", only: :test},
+      {:exvcr, "~> 0.10", only: :test},
       {:credo, "~> 0.8", only: [:dev, :test], runtime: false},
       {:mix_test_watch, "~> 0.5", only: :dev, runtime: false}
     ]

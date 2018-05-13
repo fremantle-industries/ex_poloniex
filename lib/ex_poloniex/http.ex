@@ -46,25 +46,29 @@ defmodule ExPoloniex.HTTP do
   end
 
   defp handle_ok(response_body) do
-    case response_body |> JSON.decode() do
+    response_body
+    |> Poison.decode()
+    |> case do
       {:ok, %{"error" => message}} ->
         {:error, message}
 
       {:ok, body} ->
         {:ok, body}
 
-      errors ->
-        errors
+      {:error, _} = error ->
+        error
     end
   end
 
   defp handle_forbidden(response_body) do
-    case response_body |> JSON.decode() do
+    response_body
+    |> Poison.decode()
+    |> case do
       {:ok, %{"error" => message}} ->
         {:error, %ExPoloniex.AuthenticationError{message: message}}
 
-      errors ->
-        errors
+      {:error, _} = error ->
+        error
     end
   end
 

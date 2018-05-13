@@ -5,7 +5,6 @@ defmodule ExPoloniex.TradingTest do
 
   setup_all do
     HTTPoison.start()
-    ExVCR.Config.cassette_library_dir("test/fixture/vcr_cassettes")
   end
 
   test "return_balances is a map of available balanaces" do

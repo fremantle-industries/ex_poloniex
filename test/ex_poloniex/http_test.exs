@@ -8,7 +8,6 @@ defmodule ExPoloniex.HTTPTest do
 
   setup_all do
     HTTPoison.start()
-    ExVCR.Config.cassette_library_dir("test/fixture/vcr_cassettes")
   end
 
   test "returns an authentication error when forbidden" do
