@@ -89,7 +89,10 @@ defmodule ExPoloniex.Trading do
   end
 
   def return_fee_info do
-    {:error, :not_implemented}
+    case post("returnFeeInfo") do
+      {:ok, open_orders} -> {:ok, open_orders}
+      {:error, _} = error -> error
+    end
   end
 
   def return_available_account_balances do
