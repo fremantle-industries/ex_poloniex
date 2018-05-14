@@ -11,7 +11,7 @@ by adding `poloniex_elixir` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:ex_poloniex, "~> 0.1.0"}
+    {:ex_poloniex, "~> 0.0.1"}
   ]
 end
 ```
