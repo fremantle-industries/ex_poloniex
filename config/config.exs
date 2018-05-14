@@ -23,6 +23,8 @@ use Mix.Config
 config :ex_poloniex, api_key: System.get_env("API_KEY")
 config :ex_poloniex, secret: System.get_env("SECRET")
 
+config :exvcr, filter_request_headers: ["Key", "Sign"]
+
 # It is also possible to import configuration files, relative to this
 # directory. For example, you can emulate configuration per environment
 # by uncommenting the line below and defining dev.exs, test.exs and such.
