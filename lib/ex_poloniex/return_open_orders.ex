@@ -1,18 +1,30 @@
 defmodule ExPoloniex.ReturnOpenOrders do
-  alias ExPoloniex.{OpenOrder, PostTrading}
+  alias ExPoloniex.{OpenOrder, Api}
 
   def return_open_orders(currency_pair) do
-    case PostTrading.post("returnOpenOrders", currencyPair: currency_pair) do
-      {:ok, raw_open_orders} ->
-        open_orders =
-          raw_open_orders
-          |> Enum.reduce(%{}, &deserialize_currency_pair_open_orders/2)
+    "returnOpenOrders"
+    |> Api.trading(currencyPair: currency_pair)
+    |> parse_response
+  end
 
-        {:ok, open_orders}
+  defp parse_response({:ok, raw_open_orders}) when is_map(raw_open_orders) do
+    open_orders =
+      raw_open_orders
+      |> Enum.reduce(%{}, &deserialize_currency_pair_open_orders/2)
 
-      {:error, _} = error ->
-        error
-    end
+    {:ok, open_orders}
+  end
+
+  defp parse_response({:ok, raw_open_orders}) when is_list(raw_open_orders) do
+    open_orders =
+      raw_open_orders
+      |> Enum.map(&deserialize_open_order/1)
+
+    {:ok, open_orders}
+  end
+
+  defp parse_response({:error, _} = error) do
+    error
   end
 
   defp deserialize_currency_pair_open_orders({currency_pair, raw_open_orders}, acc) do

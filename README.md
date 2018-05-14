@@ -17,9 +17,9 @@ Elixir library for the Poloniex Public & Trade API
 - [x] returnFeeInfo
 - [ ] returnTradeHistory
 - [ ] returnOrderTrades
-- [ ] buy
-- [ ] sell
-- [ ] cancelOrder
+- [x] buy
+- [x] sell
+- [x] cancelOrder
 - [ ] moveOrder
 - [ ] withdraw
 - [ ] returnAvailableAccountBalances

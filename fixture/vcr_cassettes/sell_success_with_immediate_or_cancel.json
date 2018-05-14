@@ -1,0 +1,64 @@
+[
+  {
+    "request": {
+      "body": "nonce=1526689643467331000&command=sell&immediateOrCancel=1&currencyPair=BTC_LTC&rate=0.015&amount=0.01",
+      "headers": {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Key": "***",
+        "Sign": "***"
+      },
+      "method": "post",
+      "options": [],
+      "request_body": "",
+      "url": "https://poloniex.com/tradingApi"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"orderNumber\":\"173622544709\",\"resultingTrades\":[{\"amount\":\"0.01000000\",\"date\":\"2018-05-19 00:27:24\",\"rate\":\"0.01648501\",\"total\":\"0.00016485\",\"tradeID\":\"15985164\",\"type\":\"sell\"}],\"amountUnfilled\":\"0.00000000\"}",
+      "headers": {
+        "Date": "Sat, 19 May 2018 00:27:24 GMT",
+        "Content-Type": "application/json",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=da0e2ab1b2f41b95dc7b115b8d5a6b1631526689643; expires=Sun, 19-May-19 00:27:23 GMT; path=/; domain=.poloniex.com; HttpOnly",
+        "Cache-Control": "private",
+        "Expect-CT": "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\"",
+        "Server": "cloudflare",
+        "CF-RAY": "41d27000ac2029fb-SEA"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  },
+  {
+    "request": {
+      "body": "nonce=1526671329153979000&command=returnOpenOrders&currencyPair=BTC_LTC",
+      "headers": {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Key": "***",
+        "Sign": "***"
+      },
+      "method": "post",
+      "options": [],
+      "request_body": "",
+      "url": "https://poloniex.com/tradingApi"
+    },
+    "response": {
+      "binary": false,
+      "body": "[]",
+      "headers": {
+        "Date": "Fri, 18 May 2018 19:22:09 GMT",
+        "Content-Type": "application/json",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=dfad17012d87b01a12aca43b04462a4cb1526671329; expires=Sat, 18-May-19 19:22:09 GMT; path=/; domain=.poloniex.com; HttpOnly",
+        "Cache-Control": "private",
+        "Expect-CT": "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\"",
+        "Server": "cloudflare",
+        "CF-RAY": "41d0b0e0f95c79ed-SEA"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

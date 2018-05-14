@@ -1,0 +1,33 @@
+[
+  {
+    "request": {
+      "body": "nonce=1526273139801834000&command=cancelOrder&orderNumber=172535796545",
+      "headers": {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Key": "***",
+        "Sign": "***"
+      },
+      "method": "post",
+      "options": [],
+      "request_body": "",
+      "url": "https://poloniex.com/tradingApi"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"error\":\"Invalid API key\\/secret pair.\"}",
+      "headers": {
+        "Date": "Mon, 14 May 2018 04:45:40 GMT",
+        "Content-Type": "application/json",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=d6ed6b394ab54abf51c082480a2ecf0bf1526273139; expires=Tue, 14-May-19 04:45:39 GMT; path=/; domain=.poloniex.com; HttpOnly",
+        "Cache-Control": "private",
+        "Expect-CT": "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\"",
+        "Server": "cloudflare",
+        "CF-RAY": "41aab774bd7f79b5-SEA"
+      },
+      "status_code": 403,
+      "type": "ok"
+    }
+  }
+]

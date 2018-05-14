@@ -40,6 +40,9 @@ defmodule ExPoloniex.HTTP do
       {:ok, %HTTPoison.Response{status_code: 403, body: response_body}} ->
         handle_forbidden(response_body)
 
+      {:ok, %HTTPoison.Response{status_code: 422, body: response_body}} ->
+        handle_unprocessable_entity(response_body)
+
       errors ->
         errors
     end
@@ -54,6 +57,18 @@ defmodule ExPoloniex.HTTP do
 
       {:ok, body} ->
         {:ok, body}
+
+      {:error, _} = error ->
+        error
+    end
+  end
+
+  defp handle_unprocessable_entity(response_body) do
+    response_body
+    |> Poison.decode()
+    |> case do
+      {:ok, %{"error" => message}} ->
+        {:error, message}
 
       {:error, _} = error ->
         error

@@ -1,5 +1,5 @@
 defmodule ExPoloniex.TradingTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
   use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
   doctest ExPoloniex.Trading
 
@@ -121,64 +121,12 @@ defmodule ExPoloniex.TradingTest do
     end
   end
 
-  test "return_open_orders is an ok tuple with lists of open orders for each currency pair" do
-    use_cassette "return_open_orders_success" do
-      assert {:ok, %{} = open_orders} = ExPoloniex.Trading.return_open_orders("all")
-      assert open_orders["BTC_VRC"] == []
-
-      assert open_orders["BTC_LTC"] == [
-               %ExPoloniex.OpenOrder{
-                 amount: 1.00067800,
-                 date: %DateTime{
-                   year: 2018,
-                   month: 5,
-                   day: 14,
-                   hour: 2,
-                   minute: 35,
-                   second: 58,
-                   utc_offset: 0,
-                   zone_abbr: "UTC",
-                   time_zone: "Etc/UTC",
-                   std_offset: 0
-                 },
-                 margin: 0,
-                 order_number: "172521081275",
-                 rate: 0.02690000,
-                 starting_amount: 1.00067800,
-                 total: 0.02691823,
-                 type: "sell"
-               }
-             ]
-    end
-  end
-
-  test "return_open_orders is an error tuple when the api key is invalid" do
-    use_cassette "return_open_orders_invalid_api_key" do
-      assert ExPoloniex.Trading.return_open_orders("all") == {
-               :error,
-               %ExPoloniex.AuthenticationError{message: "Invalid API key/secret pair."}
-             }
-    end
-  end
-
   test "return_trade_history is not implemented" do
     assert ExPoloniex.Trading.return_trade_history() == {:error, :not_implemented}
   end
 
   test "return_order_trades is not implemented" do
     assert ExPoloniex.Trading.return_order_trades() == {:error, :not_implemented}
-  end
-
-  test "buy is not implemented" do
-    assert ExPoloniex.Trading.buy() == {:error, :not_implemented}
-  end
-
-  test "sell is not implemented" do
-    assert ExPoloniex.Trading.sell() == {:error, :not_implemented}
-  end
-
-  test "cancel_order is not implemented" do
-    assert ExPoloniex.Trading.cancel_order() == {:error, :not_implemented}
   end
 
   test "move_order is not implemented" do
@@ -189,7 +137,7 @@ defmodule ExPoloniex.TradingTest do
     assert ExPoloniex.Trading.withdraw() == {:error, :not_implemented}
   end
 
-  test "return_fee_info is not implemented" do
+  test "return_fee_info returns an ok, fee details map on success" do
     use_cassette "return_fee_info_success" do
       assert ExPoloniex.Trading.return_fee_info() == {
                :ok,

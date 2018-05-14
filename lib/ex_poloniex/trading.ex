@@ -5,23 +5,13 @@ defmodule ExPoloniex.Trading do
   https://poloniex.com/support/api/
   """
 
-  alias ExPoloniex.{DepositsAndWithdrawals, PostTrading, ReturnOpenOrders}
-
-  defdelegate post(command, params), to: PostTrading, as: :post
-  defdelegate post(command), to: PostTrading, as: :post
-
-  @doc """
-  Returns your open orders for a given market, specified by the "currencyPair" 
-  POST parameter, e.g. "BTC_XCP". Set "currencyPair" to "all" to return open 
-  orders for all markets
-  """
-  defdelegate return_open_orders(currency_pair), to: ReturnOpenOrders, as: :return_open_orders
+  alias ExPoloniex.{DepositsAndWithdrawals, Api}
 
   @doc """
   Returns all of your available balances
   """
   def return_balances do
-    case post("returnBalances") do
+    case Api.trading("returnBalances") do
       {:ok, balances} -> {:ok, balances}
       {:error, _} = error -> error
     end
@@ -34,7 +24,7 @@ defmodule ExPoloniex.Trading do
   your margin and lending accounts
   """
   def return_complete_balances do
-    case post("returnCompleteBalances") do
+    case Api.trading("returnCompleteBalances") do
       {:ok, complete_balances} -> {:ok, complete_balances}
       {:error, _} = error -> error
     end
@@ -42,7 +32,7 @@ defmodule ExPoloniex.Trading do
 
   @doc false
   def return_complete_balances(:all) do
-    case post("returnCompleteBalances", account: :all) do
+    case Api.trading("returnCompleteBalances", account: :all) do
       {:ok, complete_balances} -> {:ok, complete_balances}
       {:error, _} = error -> error
     end
@@ -52,7 +42,7 @@ defmodule ExPoloniex.Trading do
   Returns all of your deposit addresses
   """
   def return_deposit_addresses do
-    case post("returnDepositAddresses") do
+    case Api.trading("returnDepositAddresses") do
       {:ok, deposit_addresses} -> {:ok, deposit_addresses}
       {:error, _} = error -> error
     end
@@ -63,7 +53,7 @@ defmodule ExPoloniex.Trading do
   POST parameter
   """
   def generate_new_address(currency) do
-    case post("generateNewAddress", currency: currency) do
+    case Api.trading("generateNewAddress", currency: currency) do
       {:ok, %{"response" => new_address, "success" => 1}} -> {:ok, new_address}
       {:ok, %{"response" => response, "success" => 0}} -> {:error, response}
       {:error, _} = error -> error
@@ -78,7 +68,7 @@ defmodule ExPoloniex.Trading do
     start_unix = DateTime.to_unix(start)
     end_unix = DateTime.to_unix(to)
 
-    case post("returnDepositsWithdrawals", start: start_unix, end: end_unix) do
+    case Api.trading("returnDepositsWithdrawals", start: start_unix, end: end_unix) do
       {:ok, %{"deposits" => deposits, "withdrawals" => withdrawals}} ->
         {:ok, %DepositsAndWithdrawals{deposits: deposits, withdrawals: withdrawals}}
 
@@ -86,6 +76,15 @@ defmodule ExPoloniex.Trading do
         error
     end
   end
+
+  @doc """
+  Returns your open orders for a given market, specified by the "currencyPair" 
+  POST parameter, e.g. "BTC_XCP". Set "currencyPair" to "all" to return open 
+  orders for all markets
+  """
+  defdelegate return_open_orders(currency_pair),
+    to: ExPoloniex.ReturnOpenOrders,
+    as: :return_open_orders
 
   def return_trade_history do
     {:error, :not_implemented}
@@ -95,17 +94,45 @@ defmodule ExPoloniex.Trading do
     {:error, :not_implemented}
   end
 
-  def buy do
-    {:error, :not_implemented}
-  end
+  @doc """
+  Places a limit buy order in a given market. Required POST parameters are 
+  "currencyPair", "rate", and "amount". If successful, the method will return 
+  the order number.
 
-  def sell do
-    {:error, :not_implemented}
-  end
+  You may optionally set "fillOrKill", "immediateOrCancel", "postOnly" to 1. 
+  A fill-or-kill order will either fill in its entirety or be completely aborted. 
+  An immediate-or-cancel order can be partially or completely filled, but any 
+  portion of the order that cannot be filled immediately will be canceled rather 
+  than left on the order book. A post-only order will only be placed if no 
+  portion of it fills immediately; this guarantees you will never pay the taker 
+  fee on any part of the order that fills.
+  """
+  defdelegate buy(
+                currency_pair,
+                rate,
+                amount,
+                order_type \\ nil
+              ),
+              to: ExPoloniex.Buy,
+              as: :buy
 
-  def cancel_order do
-    {:error, :not_implemented}
-  end
+  @doc """
+  Places a sell order in a given market. Parameters and output are the same as 
+  for the buy method.
+  """
+  defdelegate sell(
+                currency_pair,
+                rate,
+                amount,
+                order_type \\ nil
+              ),
+              to: ExPoloniex.Sell,
+              as: :sell
+
+  @doc """
+  Cancels an order you have placed in a given market. Required POST parameter is "orderNumber"
+  """
+  defdelegate cancel_order(order_number), to: ExPoloniex.CancelOrder, as: :cancel_order
 
   def move_order do
     {:error, :not_implemented}
@@ -121,7 +148,7 @@ defmodule ExPoloniex.Trading do
   once every 24 hours
   """
   def return_fee_info do
-    case post("returnFeeInfo") do
+    case Api.trading("returnFeeInfo") do
       {:ok, open_orders} -> {:ok, open_orders}
       {:error, _} = error -> error
     end

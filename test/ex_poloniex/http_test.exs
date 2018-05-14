@@ -1,5 +1,5 @@
 defmodule ExPoloniex.HTTPTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
   use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
   doctest ExPoloniex.HTTP
 

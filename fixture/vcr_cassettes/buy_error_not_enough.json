@@ -1,0 +1,33 @@
+[
+  {
+    "request": {
+      "body": "nonce=1526354397326378000&command=buy&currencyPair=BTC_LTC&rate=0.001&amount=100",
+      "headers": {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Key": "***",
+        "Sign": "***"
+      },
+      "method": "post",
+      "options": [],
+      "request_body": "",
+      "url": "https://poloniex.com/tradingApi"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"error\":\"Not enough BTC.\"}",
+      "headers": {
+        "Date": "Tue, 15 May 2018 03:19:57 GMT",
+        "Content-Type": "application/json",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=dba5ea8a1a29d588c616fd8e0b93799a51526354397; expires=Wed, 15-May-19 03:19:57 GMT; path=/; domain=.poloniex.com; HttpOnly",
+        "Cache-Control": "private",
+        "Expect-CT": "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\"",
+        "Server": "cloudflare",
+        "CF-RAY": "41b277484a977979-SEA"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]
