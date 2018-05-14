@@ -6,7 +6,9 @@ defmodule ExPoloniex.Mixfile do
       app: :ex_poloniex,
       version: "0.0.1",
       elixir: "~> 1.5",
+      package: package(),
       start_permanent: Mix.env() == :prod,
+      description: description(),
       deps: deps()
     ]
   end
@@ -26,5 +28,17 @@ defmodule ExPoloniex.Mixfile do
       {:mix_test_watch, "~> 0.5", only: :dev, runtime: false},
       {:ex_unit_notifier, "~> 0.1", only: :test}
     ]
+  end
+
+  defp description do
+    "Elixir library for the Poloniex Public & Trade API"
+  end
+
+  defp package do
+    %{
+      licenses: ["MIT"],
+      maintainers: ["Alex Kwiatkowski"],
+      links: %{"GitHub" => "https://github.com/fremantle-capital/ex_poloniex"}
+    }
   end
 end
