@@ -121,12 +121,33 @@ defmodule ExPoloniex.TradingTest do
     end
   end
 
-  test "return_deposits_withdrawals is not implemented" do
-    assert ExPoloniex.Trading.return_deposits_withdrawals() == {:error, :not_implemented}
+  test "return_open_orders is an ok, map tuple of orders by currency pair" do
+    use_cassette "return_open_orders_success" do
+      assert {:ok, %{} = open_orders} = ExPoloniex.Trading.return_open_orders("all")
+      assert open_orders["BTC_VRC"] == []
+
+      assert open_orders["BTC_LTC"] == [
+               %{
+                 "amount" => "1.00067800",
+                 "date" => "2018-05-14 02:35:58",
+                 "margin" => 0,
+                 "orderNumber" => "172521081275",
+                 "rate" => "0.02690000",
+                 "startingAmount" => "1.00067800",
+                 "total" => "0.02691823",
+                 "type" => "sell"
+               }
+             ]
+    end
   end
 
-  test "return_open_orders is not implemented" do
-    assert ExPoloniex.Trading.return_open_orders() == {:error, :not_implemented}
+  test "return_open_orders is an error tuple when the api key is invalid" do
+    use_cassette "return_open_orders_invalid_api_key" do
+      assert ExPoloniex.Trading.return_open_orders("all") == {
+               :error,
+               %ExPoloniex.AuthenticationError{message: "Invalid API key/secret pair."}
+             }
+    end
   end
 
   test "return_trade_history is not implemented" do

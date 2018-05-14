@@ -53,8 +53,11 @@ defmodule ExPoloniex.Trading do
     end
   end
 
-  def return_open_orders do
-    {:error, :not_implemented}
+  def return_open_orders(currency_pair) do
+    case post("returnOpenOrders", currencyPair: currency_pair) do
+      {:ok, open_orders} -> {:ok, open_orders}
+      {:error, _} = error -> error
+    end
   end
 
   def return_trade_history do
