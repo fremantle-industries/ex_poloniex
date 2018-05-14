@@ -10,34 +10,47 @@ defmodule ExPoloniex.Trading do
   def return_balances do
     case post("returnBalances") do
       {:ok, balances} -> {:ok, balances}
-      errors -> errors
+      {:error, _} = error -> error
     end
   end
 
   def return_complete_balances do
     case post("returnCompleteBalances") do
-      {:ok, completeBalances} -> {:ok, completeBalances}
-      errors -> errors
+      {:ok, complete_balances} -> {:ok, complete_balances}
+      {:error, _} = error -> error
     end
   end
 
   def return_complete_balances(:all) do
     case post("returnCompleteBalances", account: :all) do
-      {:ok, completeBalances} -> {:ok, completeBalances}
-      errors -> errors
+      {:ok, complete_balances} -> {:ok, complete_balances}
+      {:error, _} = error -> error
     end
   end
 
   def return_deposit_addresses do
-    {:error, :not_implemented}
+    case post("returnDepositAddresses") do
+      {:ok, deposit_addresses} -> {:ok, deposit_addresses}
+      {:error, _} = error -> error
+    end
   end
 
-  def generate_new_address do
-    {:error, :not_implemented}
+  def generate_new_address(currency) do
+    case post("generateNewAddress", currency: currency) do
+      {:ok, %{"response" => new_address, "success" => 1}} -> {:ok, new_address}
+      {:ok, %{"response" => response, "success" => 0}} -> {:error, response}
+      {:error, _} = error -> error
+    end
   end
 
-  def return_deposits_withdrawals do
-    {:error, :not_implemented}
+  def return_deposits_withdrawals(%DateTime{} = start, %DateTime{} = to) do
+    start_unix = DateTime.to_unix(start)
+    end_unix = DateTime.to_unix(to)
+
+    case post("returnDepositsWithdrawals", start: start_unix, end: end_unix) do
+      {:ok, deposits_and_withdrawals} -> {:ok, deposits_and_withdrawals}
+      {:error, _} = error -> error
+    end
   end
 
   def return_open_orders do

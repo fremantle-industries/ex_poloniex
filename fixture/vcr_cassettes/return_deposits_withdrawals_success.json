@@ -1,0 +1,33 @@
+[
+  {
+    "request": {
+      "body": "nonce=1526263854730025000&command=returnDepositsWithdrawals&start=1526177454&end=1526263854",
+      "headers": {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Key": "***",
+        "Sign": "***"
+      },
+      "method": "post",
+      "options": [],
+      "request_body": "",
+      "url": "https://poloniex.com/tradingApi"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"deposits\":[{\"currency\":\"LTC\",\"address\":\"LdDrX4dFYV86Y4XpdVXnaV46DVas1yM5xJ\",\"amount\":\"1.00067800\",\"confirmations\":3,\"txid\":\"800dd8913e89cb71ecf01dbaf83b2c88a6c3da559f842df815060e6918a8d6e9\",\"timestamp\":1526259357,\"status\":\"COMPLETE\"}],\"withdrawals\":[]}",
+      "headers": {
+        "Date": "Mon, 14 May 2018 02:10:55 GMT",
+        "Content-Type": "application/json",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=d24c42be32b56d3d58472707faa482df61526263854; expires=Tue, 14-May-19 02:10:54 GMT; path=/; domain=.poloniex.com; HttpOnly",
+        "Cache-Control": "private",
+        "Expect-CT": "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\"",
+        "Server": "cloudflare",
+        "CF-RAY": "41a9d4c55df92a2b-SEA"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

@@ -1,0 +1,33 @@
+[
+  {
+    "request": {
+      "body": "nonce=1526258378148718000&command=generateNewAddress&currency=USDT",
+      "headers": {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Key": "***",
+        "Sign": "***"
+      },
+      "method": "post",
+      "options": [],
+      "request_body": "",
+      "url": "https://poloniex.com/tradingApi"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"success\":1,\"response\":\"1JzN2JMR4epnx1iv7LVFuqfZhHQ7wCVJsN\"}",
+      "headers": {
+        "Date": "Mon, 14 May 2018 00:39:38 GMT",
+        "Content-Type": "application/json",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=d35c2840183e043b17aaf80dcc84880c51526258378; expires=Tue, 14-May-19 00:39:38 GMT; path=/; domain=.poloniex.com; HttpOnly",
+        "Cache-Control": "private",
+        "Expect-CT": "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\"",
+        "Server": "cloudflare",
+        "CF-RAY": "41a94f108a8b2a07-SEA"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

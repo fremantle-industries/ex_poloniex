@@ -45,12 +45,80 @@ defmodule ExPoloniex.TradingTest do
     end
   end
 
-  test "return_deposit_addresses is not implemented" do
-    assert ExPoloniex.Trading.return_deposit_addresses() == {:error, :not_implemented}
+  test "return_deposit_addresses is a map of currencies and their addresses" do
+    use_cassette "return_deposit_addresses" do
+      {:ok, deposit_addresses} = ExPoloniex.Trading.return_deposit_addresses()
+
+      assert deposit_addresses == %{
+               "BTC" => "12cAHRr3hTA7irqN3qoSVK18YPdabHnKRY",
+               "ETH" => "0x0bcfc6e600e09f697b60060ea630ed552069a367",
+               "LTC" => "LdDrX4dFYV86Y4XpdVXnaV46DVas1yM5xJ"
+             }
+    end
   end
 
-  test "generate_new_address is not implemented" do
-    assert ExPoloniex.Trading.generate_new_address() == {:error, :not_implemented}
+  test "generate_new_address returns an ok, address tuple" do
+    use_cassette "generate_new_address_success" do
+      assert ExPoloniex.Trading.generate_new_address("USDT") == {
+               :ok,
+               "1JzN2JMR4epnx1iv7LVFuqfZhHQ7wCVJsN"
+             }
+    end
+  end
+
+  test "generate_new_address returns an error tuple when it tries to generate multiple addresses on the same day" do
+    use_cassette "generate_new_address_error_same_day" do
+      assert ExPoloniex.Trading.generate_new_address("USDT") == {
+               :error,
+               "You may only generate one deposit address per currency per day."
+             }
+    end
+  end
+
+  test "generate_new_address returns an error tuple when the api key is invalid" do
+    use_cassette "generate_new_address_error_invalid_api_key" do
+      assert ExPoloniex.Trading.generate_new_address("USDT") == {
+               :error,
+               %ExPoloniex.AuthenticationError{message: "Invalid API key/secret pair."}
+             }
+    end
+  end
+
+  test "return_deposits_withdrawals is an ok, map tuple of deposits and withdrawals" do
+    use_cassette "return_deposits_withdrawals_success" do
+      to = Timex.now()
+      start = Timex.shift(to, days: -1)
+
+      assert ExPoloniex.Trading.return_deposits_withdrawals(start, to) == {
+               :ok,
+               %{
+                 "deposits" => [
+                   %{
+                     "address" => "LdDrX4dFYV86Y4XpdVXnaV46DVas1yM5xJ",
+                     "amount" => "1.00067800",
+                     "confirmations" => 3,
+                     "currency" => "LTC",
+                     "status" => "COMPLETE",
+                     "timestamp" => 1_526_259_357,
+                     "txid" => "800dd8913e89cb71ecf01dbaf83b2c88a6c3da559f842df815060e6918a8d6e9"
+                   }
+                 ],
+                 "withdrawals" => []
+               }
+             }
+    end
+  end
+
+  test "return_deposits_withdrawals is an error tuple when the api key is invalid" do
+    use_cassette "return_deposits_withdrawals_error_invalid_api_key" do
+      to = Timex.now()
+      start = Timex.shift(to, years: -100)
+
+      assert ExPoloniex.Trading.return_deposits_withdrawals(start, to) == {
+               :error,
+               %ExPoloniex.AuthenticationError{message: "Invalid API key/secret pair."}
+             }
+    end
   end
 
   test "return_deposits_withdrawals is not implemented" do

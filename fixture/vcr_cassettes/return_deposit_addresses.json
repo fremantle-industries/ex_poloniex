@@ -1,0 +1,33 @@
+[
+  {
+    "request": {
+      "body": "nonce=1526258254110625000&command=returnDepositAddresses",
+      "headers": {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Key": "***",
+        "Sign": "***"
+      },
+      "method": "post",
+      "options": [],
+      "request_body": "",
+      "url": "https://poloniex.com/tradingApi"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"BTC\":\"12cAHRr3hTA7irqN3qoSVK18YPdabHnKRY\",\"ETH\":\"0x0bcfc6e600e09f697b60060ea630ed552069a367\",\"LTC\":\"LdDrX4dFYV86Y4XpdVXnaV46DVas1yM5xJ\"}",
+      "headers": {
+        "Date": "Mon, 14 May 2018 00:37:35 GMT",
+        "Content-Type": "application/json",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=df57cfff23b87a39c5f024f09cda4eb2e1526258255; expires=Tue, 14-May-19 00:37:35 GMT; path=/; domain=.poloniex.com; HttpOnly",
+        "Cache-Control": "private",
+        "Expect-CT": "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\"",
+        "Server": "cloudflare",
+        "CF-RAY": "41a94c0fbe8d2a2b-SEA"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]
