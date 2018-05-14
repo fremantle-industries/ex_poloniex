@@ -1,12 +1,46 @@
 # ExPoloniex
-[![Build Status](https://circleci.com/gh/fremantle-capital/ex_poloniex.png?circle-token=e925c779d62292b6fd4f5f15445c4cec8d7ca79a)](https://circleci.com/gh/fremantle-capital/poloniex_elixir)
+[![Build Status](https://circleci.com/gh/fremantle-capital/ex_poloniex.svg?style=svg)](https://circleci.com/gh/fremantle-capital/ex_poloniex)
 
 Elixir library for the Poloniex Public & Trade API
 
+## Status
+
+* Public API implemented
+* Trading API in progress
+
+- [x] returnBalances
+- [x] returnCompleteBalances
+- [x] returnDepositAddresses
+- [x] generateNewAddress
+- [x] returnDepositsWithdrawals
+- [x] returnOpenOrders
+- [x] returnFeeInfo
+- [ ] returnTradeHistory
+- [ ] returnOrderTrades
+- [ ] buy
+- [ ] sell
+- [ ] cancelOrder
+- [ ] moveOrder
+- [ ] withdraw
+- [ ] returnAvailableAccountBalances
+- [ ] returnTradableBalances
+- [ ] transferBalance
+- [ ] returnMarginAccountSummary
+- [ ] marginBuy
+- [ ] marginSell
+- [ ] getMarginPosition
+- [ ] closeMarginPosition
+- [ ] closeLoanOffer
+- [ ] createLoanOffer
+- [ ] cancelLoanOffer
+- [ ] returnOpenLoanOffers
+- [ ] returnActiveLoans
+- [ ] returnLendingHistory
+- [ ] toggleAutoRenew
+
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `poloniex_elixir` to your list of dependencies in `mix.exs`:
+Add `ex_poloniex` to your list of dependencies in mix.exs
 
 ```elixir
 def deps do
@@ -16,7 +50,22 @@ def deps do
 end
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/poloniex_elixir](https://hexdocs.pm/poloniex_elixir).
+## Configuration
 
+Add the following configuration variables in your `config/config.exs` file:
+
+```elixir
+use Mix.Config
+
+config :ex_poloniex,
+  api_key: "YOUR_API_KEY",
+  api_secret: "YOUR_API_SECRET"
+```
+
+## Additional Links
+
+[Poloniex API Docs](https://poloniex.com/support/api/)
+
+## License
+
+`ex_poloniex` is released under the [MIT license](./LICENSE.md)
