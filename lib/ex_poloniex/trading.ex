@@ -5,10 +5,17 @@ defmodule ExPoloniex.Trading do
   https://poloniex.com/support/api/
   """
 
-  alias ExPoloniex.{DepositsAndWithdrawals, PostTrading}
+  alias ExPoloniex.{DepositsAndWithdrawals, PostTrading, ReturnOpenOrders}
 
   defdelegate post(command, params), to: PostTrading, as: :post
   defdelegate post(command), to: PostTrading, as: :post
+
+  @doc """
+  Returns your open orders for a given market, specified by the "currencyPair" 
+  POST parameter, e.g. "BTC_XCP". Set "currencyPair" to "all" to return open 
+  orders for all markets
+  """
+  defdelegate return_open_orders(currency_pair), to: ReturnOpenOrders, as: :return_open_orders
 
   @doc """
   Returns all of your available balances
@@ -77,18 +84,6 @@ defmodule ExPoloniex.Trading do
 
       {:error, _} = error ->
         error
-    end
-  end
-
-  @doc """
-  Returns your open orders for a given market, specified by the "currencyPair" 
-  POST parameter, e.g. "BTC_XCP". Set "currencyPair" to "all" to return open 
-  orders for all markets
-  """
-  def return_open_orders(currency_pair) do
-    case post("returnOpenOrders", currencyPair: currency_pair) do
-      {:ok, open_orders} -> {:ok, open_orders}
-      {:error, _} = error -> error
     end
   end
 

@@ -121,21 +121,32 @@ defmodule ExPoloniex.TradingTest do
     end
   end
 
-  test "return_open_orders is an ok, map tuple of orders by currency pair" do
+  test "return_open_orders is an ok tuple with lists of open orders for each currency pair" do
     use_cassette "return_open_orders_success" do
       assert {:ok, %{} = open_orders} = ExPoloniex.Trading.return_open_orders("all")
       assert open_orders["BTC_VRC"] == []
 
       assert open_orders["BTC_LTC"] == [
-               %{
-                 "amount" => "1.00067800",
-                 "date" => "2018-05-14 02:35:58",
-                 "margin" => 0,
-                 "orderNumber" => "172521081275",
-                 "rate" => "0.02690000",
-                 "startingAmount" => "1.00067800",
-                 "total" => "0.02691823",
-                 "type" => "sell"
+               %ExPoloniex.OpenOrder{
+                 amount: 1.00067800,
+                 date: %DateTime{
+                   year: 2018,
+                   month: 5,
+                   day: 14,
+                   hour: 2,
+                   minute: 35,
+                   second: 58,
+                   utc_offset: 0,
+                   zone_abbr: "UTC",
+                   time_zone: "Etc/UTC",
+                   std_offset: 0
+                 },
+                 margin: 0,
+                 order_number: "172521081275",
+                 rate: 0.02690000,
+                 starting_amount: 1.00067800,
+                 total: 0.02691823,
+                 type: "sell"
                }
              ]
     end
