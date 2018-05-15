@@ -5,9 +5,10 @@ defmodule ExPoloniex.Trading do
   https://poloniex.com/support/api/
   """
 
-  alias ExPoloniex.{DepositsAndWithdrawals}
+  alias ExPoloniex.{DepositsAndWithdrawals, PostTrading}
 
-  @adapter ExPoloniex.HTTP
+  defdelegate post(command, params), to: PostTrading, as: :post
+  defdelegate post(command), to: PostTrading, as: :post
 
   @doc """
   Returns all of your available balances
@@ -185,13 +186,5 @@ defmodule ExPoloniex.Trading do
 
   def toggle_auto_renew do
     {:error, :not_implemented}
-  end
-
-  defp post(command, params) do
-    @adapter.post("tradingApi", command, params)
-  end
-
-  defp post(command) do
-    post(command, %{})
   end
 end
