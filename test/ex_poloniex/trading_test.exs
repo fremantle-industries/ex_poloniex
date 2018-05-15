@@ -91,8 +91,8 @@ defmodule ExPoloniex.TradingTest do
 
       assert ExPoloniex.Trading.return_deposits_withdrawals(start, to) == {
                :ok,
-               %{
-                 "deposits" => [
+               %ExPoloniex.DepositsAndWithdrawals{
+                 deposits: [
                    %{
                      "address" => "LdDrX4dFYV86Y4XpdVXnaV46DVas1yM5xJ",
                      "amount" => "1.00067800",
@@ -103,7 +103,7 @@ defmodule ExPoloniex.TradingTest do
                      "txid" => "800dd8913e89cb71ecf01dbaf83b2c88a6c3da559f842df815060e6918a8d6e9"
                    }
                  ],
-                 "withdrawals" => []
+                 withdrawals: []
                }
              }
     end

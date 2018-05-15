@@ -5,6 +5,8 @@ defmodule ExPoloniex.Trading do
   https://poloniex.com/support/api/
   """
 
+  alias ExPoloniex.{DepositsAndWithdrawals}
+
   @adapter ExPoloniex.HTTP
 
   @doc """
@@ -69,8 +71,11 @@ defmodule ExPoloniex.Trading do
     end_unix = DateTime.to_unix(to)
 
     case post("returnDepositsWithdrawals", start: start_unix, end: end_unix) do
-      {:ok, deposits_and_withdrawals} -> {:ok, deposits_and_withdrawals}
-      {:error, _} = error -> error
+      {:ok, %{"deposits" => deposits, "withdrawals" => withdrawals}} ->
+        {:ok, %DepositsAndWithdrawals{deposits: deposits, withdrawals: withdrawals}}
+
+      {:error, _} = error ->
+        error
     end
   end
 
