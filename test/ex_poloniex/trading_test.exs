@@ -137,29 +137,6 @@ defmodule ExPoloniex.TradingTest do
     assert ExPoloniex.Trading.withdraw() == {:error, :not_implemented}
   end
 
-  test "return_fee_info returns an ok, fee details map on success" do
-    use_cassette "return_fee_info_success" do
-      assert ExPoloniex.Trading.return_fee_info() == {
-               :ok,
-               %{
-                 "makerFee" => "0.00150000",
-                 "nextTier" => "600.00000000",
-                 "takerFee" => "0.00250000",
-                 "thirtyDayVolume" => "0.00000000"
-               }
-             }
-    end
-  end
-
-  test "return_fee_info is an error tuple when the api key is invalid" do
-    use_cassette "return_fee_info_invalid_api_key" do
-      assert ExPoloniex.Trading.return_fee_info() == {
-               :error,
-               %ExPoloniex.AuthenticationError{message: "Invalid API key/secret pair."}
-             }
-    end
-  end
-
   test "return_available_account_balances is not implemented" do
     assert ExPoloniex.Trading.return_available_account_balances() == {:error, :not_implemented}
   end
