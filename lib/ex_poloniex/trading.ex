@@ -86,9 +86,13 @@ defmodule ExPoloniex.Trading do
     to: ExPoloniex.ReturnOpenOrders,
     as: :return_open_orders
 
-  def return_trade_history do
-    {:error, :not_implemented}
-  end
+  @doc """
+  Returns the past 200 trades for a given market, or up to 50,000 trades between 
+  a range specified in UNIX timestamps by the "start" and "end" GET parameters.
+  """
+  defdelegate return_trade_history(currency_pair, start, to),
+    to: ExPoloniex.ReturnTradeHistory,
+    as: :return_trade_history
 
   def return_order_trades do
     {:error, :not_implemented}
