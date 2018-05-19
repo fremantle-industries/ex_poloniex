@@ -1,0 +1,30 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": [],
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://poloniex.com/public?command=returnTradeHistory&currencyPair=BTC_ETH&end=1505260800&start=1505260740"
+    },
+    "response": {
+      "binary": false,
+      "body": "[{\"globalTradeID\":229967282,\"tradeID\":34131329,\"date\":\"2017-09-12 23:59:54\",\"type\":\"sell\",\"rate\":\"0.07069798\",\"amount\":\"0.00723166\",\"total\":\"0.00051126\"},{\"globalTradeID\":229967281,\"tradeID\":34131328,\"date\":\"2017-09-12 23:59:53\",\"type\":\"sell\",\"rate\":\"0.07069798\",\"amount\":\"0.00723166\",\"total\":\"0.00051126\"},{\"globalTradeID\":229967231,\"tradeID\":34131327,\"date\":\"2017-09-12 23:59:30\",\"type\":\"sell\",\"rate\":\"0.07070000\",\"amount\":\"0.04276834\",\"total\":\"0.00302372\"},{\"globalTradeID\":229967197,\"tradeID\":34131326,\"date\":\"2017-09-12 23:59:26\",\"type\":\"sell\",\"rate\":\"0.07070000\",\"amount\":\"0.00723166\",\"total\":\"0.00051127\"},{\"globalTradeID\":229967135,\"tradeID\":34131325,\"date\":\"2017-09-12 23:59:04\",\"type\":\"sell\",\"rate\":\"0.07069798\",\"amount\":\"0.37160827\",\"total\":\"0.02627195\"},{\"globalTradeID\":229967128,\"tradeID\":34131324,\"date\":\"2017-09-12 23:59:03\",\"type\":\"sell\",\"rate\":\"0.07080000\",\"amount\":\"9.29112585\",\"total\":\"0.65781171\"},{\"globalTradeID\":229967127,\"tradeID\":34131323,\"date\":\"2017-09-12 23:59:03\",\"type\":\"sell\",\"rate\":\"0.07080000\",\"amount\":\"0.07481250\",\"total\":\"0.00529672\"},{\"globalTradeID\":229967126,\"tradeID\":34131322,\"date\":\"2017-09-12 23:59:03\",\"type\":\"sell\",\"rate\":\"0.07080000\",\"amount\":\"18.17192550\",\"total\":\"1.28657232\"},{\"globalTradeID\":229967124,\"tradeID\":34131321,\"date\":\"2017-09-12 23:59:02\",\"type\":\"sell\",\"rate\":\"0.07080000\",\"amount\":\"0.08819070\",\"total\":\"0.00624390\"}]",
+      "headers": {
+        "Date": "Sat, 19 May 2018 05:34:49 GMT",
+        "Content-Type": "application/json",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=dcd62d3e605e9d73d45c68f7c1a38c44f1526708089; expires=Sun, 19-May-19 05:34:49 GMT; path=/; domain=.poloniex.com; HttpOnly",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET",
+        "Expect-CT": "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\"",
+        "Server": "cloudflare",
+        "CF-RAY": "41d432580d1329f5-SEA"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

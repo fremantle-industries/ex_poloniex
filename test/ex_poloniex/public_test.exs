@@ -9,7 +9,7 @@ defmodule ExPoloniex.PublicTest do
   end
 
   test "return_ticker" do
-    use_cassette "return_ticker" do
+    use_cassette "public/return_ticker" do
       {:ok, ticker} = ExPoloniex.Public.return_ticker()
 
       btc_eth = ticker["BTC_ETH"]
@@ -25,7 +25,7 @@ defmodule ExPoloniex.PublicTest do
   end
 
   test "return_24h_volume" do
-    use_cassette "return_24h_volume" do
+    use_cassette "public/return_24h_volume" do
       {:ok, volume} = ExPoloniex.Public.return_24h_volume()
 
       assert volume["BTC_ETH"] == %{"BTC" => "3310.97290886", "ETH" => "48516.34110835"}
@@ -38,7 +38,7 @@ defmodule ExPoloniex.PublicTest do
   end
 
   test "return_order_book" do
-    use_cassette "return_order_book" do
+    use_cassette "public/return_order_book" do
       {:ok, order_book} = ExPoloniex.Public.return_order_book("BTC_ETH")
 
       assert order_book["asks"] == [
@@ -150,7 +150,7 @@ defmodule ExPoloniex.PublicTest do
   end
 
   test "return_trade_history" do
-    use_cassette "return_trade_history" do
+    use_cassette "public/return_trade_history" do
       end_time = %DateTime{
         year: 2017,
         month: 9,
@@ -260,7 +260,7 @@ defmodule ExPoloniex.PublicTest do
   end
 
   test "return_chart_data" do
-    use_cassette "return_chart_data" do
+    use_cassette "public/return_chart_data" do
       end_time = %DateTime{
         year: 2017,
         month: 9,
@@ -301,7 +301,7 @@ defmodule ExPoloniex.PublicTest do
   end
 
   test "return_currencies" do
-    use_cassette "return_currencies" do
+    use_cassette "public/return_currencies" do
       {:ok, currencies} = ExPoloniex.Public.return_currencies()
 
       assert currencies["BTC"] == %{
@@ -318,7 +318,7 @@ defmodule ExPoloniex.PublicTest do
   end
 
   test "return_loan_orders" do
-    use_cassette "return_loan_orders" do
+    use_cassette "public/return_loan_orders" do
       {:ok, loan_orders} = ExPoloniex.Public.return_loan_orders("BTC")
 
       assert loan_orders["offers"] == [
