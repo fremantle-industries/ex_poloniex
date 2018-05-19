@@ -45,7 +45,7 @@ Add `ex_poloniex` to your list of dependencies in mix.exs
 ```elixir
 def deps do
   [
-    {:ex_poloniex, "~> 0.0.1"}
+    {:ex_poloniex, "~> 0.0.2"}
   ]
 end
 ```

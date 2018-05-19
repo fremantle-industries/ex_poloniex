@@ -4,7 +4,7 @@ defmodule ExPoloniex.Mixfile do
   def project do
     [
       app: :ex_poloniex,
-      version: "0.0.1",
+      version: "0.0.2",
       elixir: "~> 1.5",
       package: package(),
       start_permanent: Mix.env() == :prod,
