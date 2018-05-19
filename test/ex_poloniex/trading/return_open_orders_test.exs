@@ -13,7 +13,7 @@ defmodule ExPoloniex.Trading.ReturnOpenOrdersTest do
   end
 
   test "return_open_orders with all pairs is an ok tuple with a map of open orders by" do
-    use_cassette "return_open_orders_success_all" do
+    use_cassette "trading/return_open_orders_success_all" do
       assert {:ok, %{} = open_orders} = Trading.return_open_orders("all")
       assert open_orders["BTC_VRC"] == []
 
@@ -44,7 +44,7 @@ defmodule ExPoloniex.Trading.ReturnOpenOrdersTest do
   end
 
   test "return_open_orders for a pair is an ok tuple with a list of open orders" do
-    use_cassette "return_open_orders_success_currency_pair" do
+    use_cassette "trading/return_open_orders_success_currency_pair" do
       assert Trading.return_open_orders("BTC_LTC") == {
                :ok,
                [
@@ -96,7 +96,7 @@ defmodule ExPoloniex.Trading.ReturnOpenOrdersTest do
   end
 
   test "return_open_orders is an error tuple when the api key is invalid" do
-    use_cassette "return_open_orders_invalid_api_key" do
+    use_cassette "trading/return_open_orders_invalid_api_key" do
       assert Trading.return_open_orders("all") == {
                :error,
                %AuthenticationError{message: "Invalid API key/secret pair."}
@@ -105,7 +105,7 @@ defmodule ExPoloniex.Trading.ReturnOpenOrdersTest do
   end
 
   test "return_open_orders returns an error tuple when the request times out" do
-    use_cassette "return_open_orders_error_timeout" do
+    use_cassette "trading/return_open_orders_error_timeout" do
       assert Trading.return_open_orders("all") == {
                :error,
                %HTTPoison.Error{id: nil, reason: "timeout"}

@@ -4,8 +4,8 @@
       "body": "nonce=1506980985820114000&command=returnBalances",
       "headers": {
         "Content-Type": "application/x-www-form-urlencoded",
-        "Key": "8CAUAWFG-3G7LZEL0-G1C5WX93-MO0JCTXA",
-        "Sign": "7EC0DC1F89DEBD3632E20D2F5BB8F84236665D9592D9E7A1D30C25B4AF9661BA6BE4E1380CAD584A9D32528E237E969162AE6FF51A753072F6FB2C175D6EE1C1"
+        "Key": "***",
+        "Sign": "***"
       },
       "method": "post",
       "options": [],

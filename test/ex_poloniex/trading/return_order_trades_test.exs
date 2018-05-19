@@ -5,7 +5,7 @@ defmodule ExPoloniex.Trading.ReturnOrderTradesTest do
   alias ExPoloniex.{AuthenticationError, InvalidOrderNumberError, Trading}
 
   test "return_order_trades" do
-    use_cassette "return_order_trades_success" do
+    use_cassette "trading/return_order_trades_success" do
       assert Trading.return_order_trades("173622544709") == {
                :ok,
                [
@@ -26,7 +26,7 @@ defmodule ExPoloniex.Trading.ReturnOrderTradesTest do
   end
 
   test "return_order_trades returns an error tuple when the order id is invalid" do
-    use_cassette "return_order_trades_error_invalid_order_number" do
+    use_cassette "trading/return_order_trades_error_invalid_order_number" do
       assert Trading.return_order_trades("abc123") == {
                :error,
                %InvalidOrderNumberError{message: "Invalid orderNumber parameter."}
@@ -35,7 +35,7 @@ defmodule ExPoloniex.Trading.ReturnOrderTradesTest do
   end
 
   test "return_order_trades returns an error tuple when the order number doesn't exist" do
-    use_cassette "return_order_trades_error_order_number_not_found" do
+    use_cassette "trading/return_order_trades_error_order_number_not_found" do
       assert Trading.return_order_trades("1") == {
                :error,
                %InvalidOrderNumberError{
@@ -46,7 +46,7 @@ defmodule ExPoloniex.Trading.ReturnOrderTradesTest do
   end
 
   test "return_order_trades returns an error tuple when the api key is invalid" do
-    use_cassette "return_order_trades_error_invalid_api_key" do
+    use_cassette "trading/return_order_trades_error_invalid_api_key" do
       assert Trading.return_order_trades("173622544709") == {
                :error,
                %AuthenticationError{
@@ -57,7 +57,7 @@ defmodule ExPoloniex.Trading.ReturnOrderTradesTest do
   end
 
   test "return_order_trades returns an error tuple when request times out" do
-    use_cassette "return_order_trades_error_timeout" do
+    use_cassette "trading/return_order_trades_error_timeout" do
       assert Trading.return_order_trades("173622544709") == {
                :error,
                %HTTPoison.Error{id: nil, reason: "timeout"}

@@ -18,7 +18,7 @@ defmodule ExPoloniex.Trading.BuyTest do
   end
 
   test "buy with defaults returns an ok tuple with an order response of matching trades" do
-    use_cassette "buy_success_with_trades" do
+    use_cassette "trading/buy_success_with_trades" do
       assert Trading.buy("BTC_LTC", 0.001, 0.4) == {
                :ok,
                %OrderResponse{
@@ -51,7 +51,7 @@ defmodule ExPoloniex.Trading.BuyTest do
   end
 
   test "buy with fill_or_kill returns an error tuple when it can't execute the full size" do
-    use_cassette "buy_success_with_fill_or_kill" do
+    use_cassette "trading/buy_success_with_fill_or_kill" do
       assert Trading.buy("BTC_LTC", 0.001, 0.4, %OrderLifetime.FillOrKill{}) == {
                :error,
                %FillOrKillError{message: "Unable to fill order completely."}
@@ -60,7 +60,7 @@ defmodule ExPoloniex.Trading.BuyTest do
   end
 
   test "buy with immediate_or_cancel returns an ok tuple with the order response and the amount unfilled" do
-    use_cassette "buy_success_with_immediate_or_cancel" do
+    use_cassette "trading/buy_success_with_immediate_or_cancel" do
       assert {
                :ok,
                %OrderResponse{
@@ -95,7 +95,7 @@ defmodule ExPoloniex.Trading.BuyTest do
   end
 
   test "buy with post_only returns an ok tuple that contains an order response with no trades" do
-    use_cassette "buy_success_with_post_only" do
+    use_cassette "trading/buy_success_with_post_only" do
       assert {
                :ok,
                %OrderResponse{
@@ -108,7 +108,7 @@ defmodule ExPoloniex.Trading.BuyTest do
   end
 
   test "buy with post_only returns an error tuple when the price would take liquidity" do
-    use_cassette "buy_error_post_only_takes_liquidity" do
+    use_cassette "trading/buy_error_post_only_takes_liquidity" do
       assert Trading.buy("BTC_LTC", 0.017, 0.1, %OrderLifetime.PostOnly{}) == {
                :error,
                %PostOnlyError{message: "Unable to place post-only order at this price."}
@@ -117,7 +117,7 @@ defmodule ExPoloniex.Trading.BuyTest do
   end
 
   test "buy returns an error tuple when the api key is invalid" do
-    use_cassette "buy_error_invalid_api_key" do
+    use_cassette "trading/buy_error_invalid_api_key" do
       assert Trading.buy("BTC_LTC", 0.001, 0.1) == {
                :error,
                %AuthenticationError{message: "Invalid API key/secret pair."}
@@ -126,7 +126,7 @@ defmodule ExPoloniex.Trading.BuyTest do
   end
 
   test "buy returns an error tuple when there is not enough quote currency" do
-    use_cassette "buy_error_not_enough" do
+    use_cassette "trading/buy_error_not_enough" do
       assert Trading.buy("BTC_LTC", 0.001, 100) == {
                :error,
                %NotEnoughError{message: "Not enough BTC."}
@@ -135,7 +135,7 @@ defmodule ExPoloniex.Trading.BuyTest do
   end
 
   test "buy returns an error tuple when the request times out" do
-    use_cassette "buy_error_timeout" do
+    use_cassette "trading/buy_error_timeout" do
       assert Trading.buy("BTC_LTC", 0.001, 0.1) == {
                :error,
                %HTTPoison.Error{id: nil, reason: "timeout"}

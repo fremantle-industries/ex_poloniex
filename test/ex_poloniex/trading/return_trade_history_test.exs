@@ -5,7 +5,7 @@ defmodule ExPoloniex.Trading.ReturnTradeHistoryTest do
   alias ExPoloniex.{AuthenticationError, HistoricalTrade, Trading}
 
   test "return_trade_history returns an ok tuple with a list of historical trades" do
-    use_cassette "return_trade_history_success" do
+    use_cassette "trading/return_trade_history_success" do
       to = Timex.now()
       start = Timex.shift(to, days: -1)
 
@@ -41,7 +41,7 @@ defmodule ExPoloniex.Trading.ReturnTradeHistoryTest do
   end
 
   test "return_fee_info is an error tuple when the api key is invalid" do
-    use_cassette "return_trade_history_error_invalid_api_key" do
+    use_cassette "trading/return_trade_history_error_invalid_api_key" do
       to = Timex.now()
       start = Timex.shift(to, days: -1)
 
@@ -53,7 +53,7 @@ defmodule ExPoloniex.Trading.ReturnTradeHistoryTest do
   end
 
   test "return_trade_history returns an error tuple when the request times out" do
-    use_cassette "return_trade_history_error_timeout" do
+    use_cassette "trading/return_trade_history_error_timeout" do
       to = Timex.now()
       start = Timex.shift(to, days: -1)
 

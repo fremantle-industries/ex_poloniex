@@ -4,8 +4,8 @@
       "body": "nonce=1506990279012987000&command=returnCompleteBalances&account=all",
       "headers": {
         "Content-Type": "application/x-www-form-urlencoded",
-        "Key": "8CAUAWFG-3G7LZEL0-G1C5WX93-MO0JCTXA",
-        "Sign": "939FB8409629BAF5AE9017DC74B0B53F1D3D79590CEECBB751962838AD449BAD1A084CCBCD0F8FD882B472DEB6FE468B89256CED2E993F5A97C630AC514ECDCE"
+        "Key": "***",
+        "Sign": "***"
       },
       "method": "post",
       "options": [],

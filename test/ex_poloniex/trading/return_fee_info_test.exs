@@ -5,7 +5,7 @@ defmodule ExPoloniex.Trading.ReturnFeeInfoTest do
   alias ExPoloniex.{AuthenticationError, Trading}
 
   test "return_fee_info returns an ok, fee details map on success" do
-    use_cassette "return_fee_info_success" do
+    use_cassette "trading/return_fee_info_success" do
       assert Trading.return_fee_info() == {
                :ok,
                %{
@@ -19,7 +19,7 @@ defmodule ExPoloniex.Trading.ReturnFeeInfoTest do
   end
 
   test "return_fee_info is an error tuple when the api key is invalid" do
-    use_cassette "return_fee_info_invalid_api_key" do
+    use_cassette "trading/return_fee_info_invalid_api_key" do
       assert Trading.return_fee_info() == {
                :error,
                %AuthenticationError{message: "Invalid API key/secret pair."}
@@ -28,7 +28,7 @@ defmodule ExPoloniex.Trading.ReturnFeeInfoTest do
   end
 
   test "return_fee_info returns an error tuple when the request times out" do
-    use_cassette "return_fee_info_error_timeout" do
+    use_cassette "trading/return_fee_info_error_timeout" do
       assert Trading.return_fee_info() == {
                :error,
                %HTTPoison.Error{id: nil, reason: "timeout"}
