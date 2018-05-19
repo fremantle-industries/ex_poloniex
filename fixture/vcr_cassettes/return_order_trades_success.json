@@ -1,0 +1,33 @@
+[
+  {
+    "request": {
+      "body": "nonce=1526707162252781000&command=returnOrderTrades&orderNumber=173622544709",
+      "headers": {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Key": "***",
+        "Sign": "***"
+      },
+      "method": "post",
+      "options": [],
+      "request_body": "",
+      "url": "https://poloniex.com/tradingApi"
+    },
+    "response": {
+      "binary": false,
+      "body": "[{\"globalTradeID\":372942295,\"tradeID\":15985164,\"currencyPair\":\"BTC_LTC\",\"type\":\"sell\",\"rate\":\"0.01648501\",\"amount\":\"0.01000000\",\"total\":\"0.00016485\",\"fee\":\"0.00200000\",\"date\":\"2018-05-19 00:27:24\"}]",
+      "headers": {
+        "Date": "Sat, 19 May 2018 05:19:22 GMT",
+        "Content-Type": "application/json",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=d586cfc4f6e2f84aaa228b5b9790800521526707162; expires=Sun, 19-May-19 05:19:22 GMT; path=/; domain=.poloniex.com; HttpOnly",
+        "Cache-Control": "private",
+        "Expect-CT": "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\"",
+        "Server": "cloudflare",
+        "CF-RAY": "41d41bb69bf4bb36-SEA"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

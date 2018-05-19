@@ -94,9 +94,14 @@ defmodule ExPoloniex.Trading do
     to: ExPoloniex.ReturnTradeHistory,
     as: :return_trade_history
 
-  def return_order_trades do
-    {:error, :not_implemented}
-  end
+  @doc """
+  Returns all trades involving a given order, specified by the "orderNumber" 
+  POST parameter. If no trades for the order have occurred or you specify an 
+  order that does not belong to you, you will receive an error
+  """
+  defdelegate return_order_trades(order_number),
+    to: ExPoloniex.ReturnOrderTrades,
+    as: :return_order_trades
 
   @doc """
   Places a limit buy order in a given market. Required POST parameters are 

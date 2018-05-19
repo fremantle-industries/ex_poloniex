@@ -121,10 +121,6 @@ defmodule ExPoloniex.TradingTest do
     end
   end
 
-  test "return_order_trades is not implemented" do
-    assert ExPoloniex.Trading.return_order_trades() == {:error, :not_implemented}
-  end
-
   test "move_order is not implemented" do
     assert ExPoloniex.Trading.move_order() == {:error, :not_implemented}
   end

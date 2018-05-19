@@ -1,0 +1,33 @@
+[
+  {
+    "request": {
+      "body": "nonce=1526707367929251000&command=returnOrderTrades&orderNumber=1",
+      "headers": {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Key": "***",
+        "Sign": "***"
+      },
+      "method": "post",
+      "options": [],
+      "request_body": "",
+      "url": "https://poloniex.com/tradingApi"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"error\":\"Order not found, or you are not the person who placed it.\"}",
+      "headers": {
+        "Date": "Sat, 19 May 2018 05:22:48 GMT",
+        "Content-Type": "application/json",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=d35c58e822e407816d297f5035e5563b81526707368; expires=Sun, 19-May-19 05:22:48 GMT; path=/; domain=.poloniex.com; HttpOnly",
+        "Cache-Control": "private",
+        "Expect-CT": "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\"",
+        "Server": "cloudflare",
+        "CF-RAY": "41d420ba9ee079d9-SEA"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]
