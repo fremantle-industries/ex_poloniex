@@ -106,7 +106,7 @@ defmodule ExPoloniex.HTTP do
   end
 
   defp secret do
-    Application.get_env(:ex_poloniex, :secret)
+    Application.get_env(:ex_poloniex, :api_secret)
   end
 
   defp sign_post_headers(body) do

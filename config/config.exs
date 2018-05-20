@@ -21,7 +21,7 @@ use Mix.Config
 #     config :logger, level: :info
 #
 config :ex_poloniex, api_key: System.get_env("API_KEY")
-config :ex_poloniex, secret: System.get_env("SECRET")
+config :ex_poloniex, api_secret: System.get_env("API_SECRET")
 
 config :exvcr, filter_request_headers: ["Key", "Sign"]
 
