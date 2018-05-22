@@ -51,8 +51,8 @@ defmodule ExPoloniex.Trading.BuyTest do
   end
 
   test "buy with fill_or_kill returns an error tuple when it can't execute the full size" do
-    use_cassette "trading/buy_success_with_fill_or_kill" do
-      assert Trading.buy("BTC_LTC", 0.001, 0.4, %OrderLifetime.FillOrKill{}) == {
+    use_cassette "trading/buy_error_with_fill_or_kill_unable_to_fill_completely" do
+      assert Trading.buy("BTC_LTC", 0.001, 0.1, %OrderLifetime.FillOrKill{}) == {
                :error,
                %FillOrKillError{message: "Unable to fill order completely."}
              }

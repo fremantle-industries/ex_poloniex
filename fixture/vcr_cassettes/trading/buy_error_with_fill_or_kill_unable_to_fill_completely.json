@@ -1,7 +1,7 @@
 [
   {
     "request": {
-      "body": "nonce=1526542608978147000&command=buy&fillOrKill=1&currencyPair=BTC_LTC&rate=0.001&amount=0.4",
+      "body": "nonce=1526542608978147000&command=buy&fillOrKill=1&currencyPair=BTC_LTC&rate=0.001&amount=0.1",
       "headers": {
         "Content-Type": "application/x-www-form-urlencoded",
         "Key": "***",
