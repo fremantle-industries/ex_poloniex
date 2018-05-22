@@ -50,6 +50,39 @@ defmodule ExPoloniex.Trading.BuyTest do
     end
   end
 
+  test "buy with fill_or_kill returns an ok tuple with the executed trades" do
+    use_cassette "trading/buy_success_with_fill_or_kill" do
+      assert Trading.buy("BTC_LTC", 0.0165, 0.01, %OrderDurations.FillOrKill{}) == {
+               :ok,
+               %ExPoloniex.OrderResponse{
+                 amount_unfilled: nil,
+                 order_number: "174286166423",
+                 resulting_trades: [
+                   %ExPoloniex.Trade{
+                     amount: 0.01,
+                     date: %DateTime{
+                       year: 2018,
+                       month: 5,
+                       day: 22,
+                       hour: 4,
+                       minute: 29,
+                       second: 01,
+                       utc_offset: 0,
+                       zone_abbr: "UTC",
+                       time_zone: "Etc/UTC",
+                       std_offset: 0
+                     },
+                     rate: 0.01607,
+                     total: 0.0001607,
+                     trade_id: "16001202",
+                     type: "buy"
+                   }
+                 ]
+               }
+             }
+    end
+  end
+
   test "buy with fill_or_kill returns an error tuple when it can't execute the full size" do
     use_cassette "trading/buy_error_with_fill_or_kill_unable_to_fill_completely" do
       assert Trading.buy("BTC_LTC", 0.001, 0.1, %OrderDurations.FillOrKill{}) == {
