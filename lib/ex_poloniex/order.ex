@@ -2,7 +2,7 @@ defmodule ExPoloniex.Order do
   @moduledoc false
 
   alias ExPoloniex.{FillOrKillError, NotEnoughError, OrderResponse, PostOnlyError, Trade}
-  alias ExPoloniex.OrderLifetime.{FillOrKill, ImmediateOrCancel, PostOnly, TakeAndRemain}
+  alias ExPoloniex.OrderDurations.{FillOrKill, ImmediateOrCancel, PostOnly, TakeAndRemain}
 
   def build_params(pair, rate, amount, order_type) do
     (order_type || %TakeAndRemain{})

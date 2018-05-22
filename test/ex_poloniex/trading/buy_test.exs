@@ -6,7 +6,7 @@ defmodule ExPoloniex.Trading.BuyTest do
     AuthenticationError,
     FillOrKillError,
     NotEnoughError,
-    OrderLifetime,
+    OrderDurations,
     OrderResponse,
     PostOnlyError,
     Trade,
@@ -52,7 +52,7 @@ defmodule ExPoloniex.Trading.BuyTest do
 
   test "buy with fill_or_kill returns an error tuple when it can't execute the full size" do
     use_cassette "trading/buy_error_with_fill_or_kill_unable_to_fill_completely" do
-      assert Trading.buy("BTC_LTC", 0.001, 0.1, %OrderLifetime.FillOrKill{}) == {
+      assert Trading.buy("BTC_LTC", 0.001, 0.1, %OrderDurations.FillOrKill{}) == {
                :error,
                %FillOrKillError{message: "Unable to fill order completely."}
              }
@@ -68,7 +68,7 @@ defmodule ExPoloniex.Trading.BuyTest do
                  amount_unfilled: 0.0,
                  resulting_trades: [trade]
                }
-             } = Trading.buy("BTC_LTC", 0.017, 0.01, %OrderLifetime.ImmediateOrCancel{})
+             } = Trading.buy("BTC_LTC", 0.017, 0.01, %OrderDurations.ImmediateOrCancel{})
 
       assert Trading.return_open_orders("BTC_LTC") == {:ok, []}
 
@@ -103,13 +103,13 @@ defmodule ExPoloniex.Trading.BuyTest do
                  amount_unfilled: nil,
                  resulting_trades: []
                }
-             } = Trading.buy("BTC_LTC", 0.001, 0.4, %OrderLifetime.PostOnly{})
+             } = Trading.buy("BTC_LTC", 0.001, 0.4, %OrderDurations.PostOnly{})
     end
   end
 
   test "buy with post_only returns an error tuple when the price would take liquidity" do
     use_cassette "trading/buy_error_post_only_takes_liquidity" do
-      assert Trading.buy("BTC_LTC", 0.017, 0.1, %OrderLifetime.PostOnly{}) == {
+      assert Trading.buy("BTC_LTC", 0.017, 0.1, %OrderDurations.PostOnly{}) == {
                :error,
                %PostOnlyError{message: "Unable to place post-only order at this price."}
              }
