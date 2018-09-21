@@ -77,6 +77,13 @@ defmodule ExPoloniex.Trading do
     end
   end
 
+  def return_market_rules do
+    case Api.trading("returnMarketRules") do
+      {:ok, rules} -> {:ok, rules}
+      {:error, _} = error -> error
+    end
+  end
+
   @doc """
   Returns your open orders for a given market, specified by the "currencyPair" 
   POST parameter, e.g. "BTC_XCP". Set "currencyPair" to "all" to return open 

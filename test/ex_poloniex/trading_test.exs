@@ -121,6 +121,22 @@ defmodule ExPoloniex.TradingTest do
     end
   end
 
+  describe "#return_market_rules" do
+    test "returns an ok tuple with the rules for each product" do
+      use_cassette "trading/return_market_rules_success" do
+        assert {:ok, rules} = ExPoloniex.Trading.return_market_rules()
+
+        assert rules["default"]["buyFee"] != nil
+        assert rules["default"]["sellFee"] != nil
+        assert rules["default"]["minPrice"] != nil
+        assert rules["default"]["maxPrice"] != nil
+        assert rules["default"]["minAmount"] != nil
+        assert rules["default"]["minTotal"] != nil
+        assert rules["default"]["serverTimeStamp"] != nil
+      end
+    end
+  end
+
   test "move_order is not implemented" do
     assert ExPoloniex.Trading.move_order() == {:error, :not_implemented}
   end

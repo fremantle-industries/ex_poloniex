@@ -1,0 +1,33 @@
+[
+  {
+    "request": {
+      "body": "nonce=1537547806845292000&command=returnMarketRules",
+      "headers": {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Key": "***",
+        "Sign": "***"
+      },
+      "method": "post",
+      "options": [],
+      "request_body": "",
+      "url": "https://poloniex.com/tradingApi"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"default\":{\"minAmount\":\"0.01\",\"minPrice\":\"0.00000001\",\"maxPrice\":\"5000\",\"minTotal\":\"0.0001\",\"buyFee\":\"0.20000000\",\"sellFee\":\"0.20000000\",\"serverTimeStamp\":\"2018-09-21 16:36:47\"}}",
+      "headers": {
+        "Date": "Fri, 21 Sep 2018 16:36:47 GMT",
+        "Content-Type": "application/json",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=dcb5ebc0abfeaa7a9f5395ba0475d8dd21537547807; expires=Sat, 21-Sep-19 16:36:47 GMT; path=/; domain=.poloniex.com; HttpOnly",
+        "Cache-Control": "private",
+        "Expect-CT": "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\"",
+        "Server": "cloudflare",
+        "CF-RAY": "45ddf3e329612a31-SEA"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]
